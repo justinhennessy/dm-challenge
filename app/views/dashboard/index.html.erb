@@ -1,0 +1,8 @@
+<h1>DM Challenge</h1>
+
+<h2><%= @challenge.name %></h2>
+<% if Time.now < @challenge.start_date %>
+  <%= distance_of_time_in_words(Time.now, @challenge.start_date) %> to start!
+<%else%>
+  <%= distance_of_time_in_words(@challenge.start_date, Time.now) %> left!
+<%end%>
