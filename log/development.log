@@ -996,3 +996,293 @@ Started GET "/assets/dashboard.js?body=1" for 127.0.0.1 at 2013-05-12 21:38:18 +
 
 
 Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-12 21:38:18 +1000
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateUsers (20130512114722)
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "email" varchar(255), "commitment" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20130512114722"]]
+  [1m[36m (19.8ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (16.5ms)[0m  [1mCREATE TABLE "challenges" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "description" text, "start_date" date, "end_date" date, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (1.5ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "email" varchar(255), "commitment" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (1.2ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (1.3ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.2ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (1.5ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20130512114722')
+  [1m[36m (1.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20130512104233')[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (80.1ms)[0m  INSERT INTO "challenges" ("created_at", "description", "end_date", "name", "start_date", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Sun, 12 May 2013 12:04:32 UTC +00:00], ["description", "To make the most kilometers in 31 days"], ["end_date", Fri, 07 Jun 2013], ["name", "Kilometer Smash!"], ["start_date", Tue, 07 May 2013], ["updated_at", Sun, 12 May 2013 12:04:32 UTC +00:00]]
+  [1m[36m (200.3ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.9ms)[0m  [1mINSERT INTO "users" ("commitment", "created_at", "email", "name", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["commitment", 1500], ["created_at", Sun, 12 May 2013 12:04:32 UTC +00:00], ["email", "justhennessy@gmail.com"], ["name", "Justin Hennessy"], ["updated_at", Sun, 12 May 2013 12:04:32 UTC +00:00]]
+  [1m[35m (1.6ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "users" ("commitment", "created_at", "email", "name", "updated_at") VALUES (?, ?, ?, ?, ?)  [["commitment", 1500], ["created_at", Sun, 12 May 2013 12:04:32 UTC +00:00], ["email", "blah1@gmail.com"], ["name", "Rhys"], ["updated_at", Sun, 12 May 2013 12:04:32 UTC +00:00]]
+  [1m[36m (1.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("commitment", "created_at", "email", "name", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["commitment", 1500], ["created_at", Sun, 12 May 2013 12:04:32 UTC +00:00], ["email", "blah2@gmail.com"], ["name", "Kelly"], ["updated_at", Sun, 12 May 2013 12:04:32 UTC +00:00]]
+  [1m[35m (1.4ms)[0m  commit transaction
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "users" ("commitment", "created_at", "email", "name", "updated_at") VALUES (?, ?, ?, ?, ?)  [["commitment", 1000], ["created_at", Sun, 12 May 2013 12:04:32 UTC +00:00], ["email", "blah3@gmail.com"], ["name", "Rae"], ["updated_at", Sun, 12 May 2013 12:04:32 UTC +00:00]]
+  [1m[36m (1.3ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("commitment", "created_at", "email", "name", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["commitment", 500], ["created_at", Sun, 12 May 2013 12:04:32 UTC +00:00], ["email", "blah4@gmail.com"], ["name", "Liam"], ["updated_at", Sun, 12 May 2013 12:04:32 UTC +00:00]]
+  [1m[35m (1.4ms)[0m  commit transaction
+  [1m[36m (0.3ms)[0m  [1mSELECT version FROM schema_migrations[0m
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mChallenge Load (0.2ms)[0m  SELECT "challenges".* FROM "challenges" ORDER BY "challenges"."id" ASC LIMIT 1
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT "users".* FROM "users"[0m
+  [1m[36m (1.8ms)[0m  [1mDROP TABLE "challenges"[0m
+  [1m[35m (1.5ms)[0m  CREATE TABLE "challenges" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "description" text, "start_date" date, "end_date" date, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (1.9ms)[0m  [1mDROP TABLE "users"[0m
+  [1m[35m (1.4ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "email" varchar(255), "commitment" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.3ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (40.1ms)[0m  INSERT INTO "challenges" ("created_at", "description", "end_date", "name", "start_date", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Sun, 12 May 2013 12:07:38 UTC +00:00], ["description", "To make the most kilometers in 31 days"], ["end_date", Fri, 07 Jun 2013], ["name", "Kilometer Smash!"], ["start_date", Tue, 07 May 2013], ["updated_at", Sun, 12 May 2013 12:07:38 UTC +00:00]]
+  [1m[36m (1.3ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "users" ("commitment", "created_at", "email", "name", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["commitment", 1500], ["created_at", Sun, 12 May 2013 12:07:38 UTC +00:00], ["email", "justhennessy@gmail.com"], ["name", "Justin Hennessy"], ["updated_at", Sun, 12 May 2013 12:07:38 UTC +00:00]]
+  [1m[35m (2.1ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "users" ("commitment", "created_at", "email", "name", "updated_at") VALUES (?, ?, ?, ?, ?)  [["commitment", 1500], ["created_at", Sun, 12 May 2013 12:07:38 UTC +00:00], ["email", "blah1@gmail.com"], ["name", "Rhys"], ["updated_at", Sun, 12 May 2013 12:07:38 UTC +00:00]]
+  [1m[36m (1.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("commitment", "created_at", "email", "name", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["commitment", 1500], ["created_at", Sun, 12 May 2013 12:07:38 UTC +00:00], ["email", "blah2@gmail.com"], ["name", "Kelly"], ["updated_at", Sun, 12 May 2013 12:07:38 UTC +00:00]]
+  [1m[35m (1.6ms)[0m  commit transaction
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "users" ("commitment", "created_at", "email", "name", "updated_at") VALUES (?, ?, ?, ?, ?)  [["commitment", 1000], ["created_at", Sun, 12 May 2013 12:07:38 UTC +00:00], ["email", "blah3@gmail.com"], ["name", "Rae"], ["updated_at", Sun, 12 May 2013 12:07:38 UTC +00:00]]
+  [1m[36m (1.3ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "users" ("commitment", "created_at", "email", "name", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["commitment", 500], ["created_at", Sun, 12 May 2013 12:07:38 UTC +00:00], ["email", "blah4@gmail.com"], ["name", "Liam"], ["updated_at", Sun, 12 May 2013 12:07:38 UTC +00:00]]
+  [1m[35m (1.6ms)[0m  commit transaction
+  [1m[36mChallenge Load (0.2ms)[0m  [1mSELECT "challenges".* FROM "challenges" ORDER BY "challenges"."id" ASC LIMIT 1[0m
+  [1m[36m (0.2ms)[0m  [1mSELECT SUM("users"."commitment") AS sum_id FROM "users"[0m
+  [1m[36m (0.3ms)[0m  [1mSELECT SUM("users"."commitment") AS sum_id FROM "users"[0m
+  [1m[35m (0.2ms)[0m  SELECT SUM("users"."commitment") AS sum_id FROM "users"
+  [1m[36m (0.3ms)[0m  [1mSELECT SUM("users"."commitment") AS sum_id FROM "users"[0m
+
+
+Started GET "/dashboard" for 127.0.0.1 at 2013-05-12 22:27:22 +1000
+Processing by DashboardController#index as HTML
+  [1m[36mChallenge Load (0.3ms)[0m  [1mSELECT "challenges".* FROM "challenges" ORDER BY "challenges"."id" ASC LIMIT 1[0m
+Completed 500 Internal Server Error in 83ms
+
+NoMethodError (undefined method `target' for #<Challenge:0x007fe0a69ccb40>):
+  app/controllers/dashboard_controller.rb:4:in `index'
+
+
+  Rendered /Users/justinh/.rbenv/versions/2.0.0-p0/lib/ruby/gems/2.0.0/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.5ms)
+  Rendered /Users/justinh/.rbenv/versions/2.0.0-p0/lib/ruby/gems/2.0.0/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.5ms)
+  Rendered /Users/justinh/.rbenv/versions/2.0.0-p0/lib/ruby/gems/2.0.0/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (99.6ms)
+  Rendered /Users/justinh/.rbenv/versions/2.0.0-p0/lib/ruby/gems/2.0.0/gems/actionpack-4.0.0.rc1/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (188.4ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to AddReferencesToUsers (20130512123704)
+  [1m[35m (0.3ms)[0m  begin transaction
+  [1m[36m (12.4ms)[0m  [1mALTER TABLE "users" ADD "challenge_id" integer[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20130512123704"]]
+  [1m[36m (46.7ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mChallenge Load (0.6ms)[0m  SELECT "challenges".* FROM "challenges" ORDER BY "challenges"."id" ASC LIMIT 1
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mUser Load (0.6ms)[0m  SELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT 1
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT 1
+  [1m[36m (0.5ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (94.9ms)[0m  UPDATE "users" SET "challenge_id" = ?, "updated_at" = ? WHERE "users"."id" = 1  [["challenge_id", 1], ["updated_at", Sun, 12 May 2013 12:48:16 UTC +00:00]]
+  [1m[36m (1.6ms)[0m  [1mcommit transaction[0m
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT 1
+  [1m[36mChallenge Load (0.7ms)[0m  [1mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? ORDER BY "challenges"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT 1
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mChallenge Load (0.2ms)[0m  SELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? ORDER BY "challenges"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT 1
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mChallenge Load (0.3ms)[0m  SELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? ORDER BY "challenges"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mChallenge Load (0.5ms)[0m  [1mSELECT "challenges".* FROM "challenges" ORDER BY "challenges"."id" ASC LIMIT 1[0m
+  [1m[36m (0.3ms)[0m  [1mSELECT version FROM schema_migrations[0m
+  [1m[36mChallenge Load (0.2ms)[0m  [1mSELECT "challenges".* FROM "challenges" ORDER BY "challenges"."id" ASC LIMIT 1[0m
+  [1m[35mChallenge Load (0.5ms)[0m  SELECT "challenges".* FROM "challenges" ORDER BY "challenges"."id" ASC LIMIT 1
+  [1m[36mUser Load (23.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."challenge_id" = ?[0m  [["challenge_id", 1]]
+  [1m[35mChallenge Load (0.4ms)[0m  SELECT "challenges".* FROM "challenges" ORDER BY "challenges"."id" ASC LIMIT 1
+  [1m[36mChallenge Load (0.2ms)[0m  [1mSELECT "challenges".* FROM "challenges" ORDER BY "challenges"."id" ASC LIMIT 1[0m
+  [1m[35mChallenge Load (0.5ms)[0m  SELECT "challenges".* FROM "challenges" ORDER BY "challenges"."id" ASC LIMIT 1
+  [1m[36mUser Load (100.5ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."challenge_id" = ?[0m  [["challenge_id", 1]]
+  [1m[35mChallenge Load (0.6ms)[0m  SELECT "challenges".* FROM "challenges" ORDER BY "challenges"."id" ASC LIMIT 1
+DEPRECATION WARNING: Relation#all is deprecated. If you want to eager-load a relation, you can call #load (e.g. `Post.where(published: true).load`). If you want to get an array of records from a relation, you can call #to_a (e.g. `Post.where(published: true).to_a`). (called from irb_binding at (irb):3)
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."challenge_id" = ?[0m  [["challenge_id", 1]]
+  [1m[35mChallenge Load (0.3ms)[0m  SELECT "challenges".* FROM "challenges" ORDER BY "challenges"."id" ASC LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mSELECT SUM("users"."commitment") AS sum_id FROM "users" WHERE "users"."challenge_id" = ?[0m  [["challenge_id", 1]]
+  [1m[35mChallenge Load (0.5ms)[0m  SELECT "challenges".* FROM "challenges" ORDER BY "challenges"."id" ASC LIMIT 1
+  [1m[36mChallenge Load (0.6ms)[0m  [1mSELECT "challenges".* FROM "challenges" ORDER BY "challenges"."id" ASC LIMIT 1[0m
+  [1m[35mChallenge Load (0.2ms)[0m  SELECT "challenges".* FROM "challenges" ORDER BY "challenges"."id" ASC LIMIT 1
+  [1m[36mChallenge Load (0.3ms)[0m  [1mSELECT "challenges".* FROM "challenges" ORDER BY "challenges"."id" ASC LIMIT 1[0m
+  [1m[36mChallenge Load (0.2ms)[0m  [1mSELECT "challenges".* FROM "challenges" ORDER BY "challenges"."id" ASC LIMIT 1[0m
+  [1m[35m (10.5ms)[0m  SELECT SUM("users"."commitment") AS sum_id FROM "users" WHERE "users"."challenge_id" = ?  [["challenge_id", 1]]
+
+
+Started GET "/dashboard" for 127.0.0.1 at 2013-05-12 22:59:14 +1000
+Processing by DashboardController#index as HTML
+  [1m[36mChallenge Load (0.2ms)[0m  [1mSELECT "challenges".* FROM "challenges" ORDER BY "challenges"."id" ASC LIMIT 1[0m
+  [1m[35m (52.3ms)[0m  SELECT SUM("users"."commitment") AS sum_id FROM "users" WHERE "users"."challenge_id" = ?  [["challenge_id", 1]]
+  Rendered dashboard/index.html.erb within layouts/application (91.8ms)
+Completed 200 OK in 1213ms (Views: 1111.9ms | ActiveRecord: 53.5ms)
+
+
+Started GET "/assets/challenges.css?body=1" for 127.0.0.1 at 2013-05-12 22:59:16 +1000
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-12 22:59:16 +1000
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2013-05-12 22:59:16 +1000
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-12 22:59:16 +1000
+
+
+Started GET "/assets/dashboard.css?body=1" for 127.0.0.1 at 2013-05-12 22:59:16 +1000
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2013-05-12 22:59:16 +1000
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-12 22:59:16 +1000
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-05-12 22:59:16 +1000
+
+
+Started GET "/assets/challenges.js?body=1" for 127.0.0.1 at 2013-05-12 22:59:16 +1000
+
+
+Started GET "/assets/dashboard.js?body=1" for 127.0.0.1 at 2013-05-12 22:59:16 +1000
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-12 22:59:16 +1000
+
+
+Started GET "/dashboard" for 127.0.0.1 at 2013-05-12 22:59:43 +1000
+Processing by DashboardController#index as HTML
+  [1m[36mChallenge Load (0.2ms)[0m  [1mSELECT "challenges".* FROM "challenges" ORDER BY "challenges"."id" ASC LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  SELECT SUM("users"."commitment") AS sum_id FROM "users" WHERE "users"."challenge_id" = ?  [["challenge_id", 1]]
+  Rendered dashboard/index.html.erb within layouts/application (4.5ms)
+Completed 200 OK in 17ms (Views: 13.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-12 22:59:43 +1000
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2013-05-12 22:59:43 +1000
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-12 22:59:44 +1000
+
+
+Started GET "/assets/dashboard.css?body=1" for 127.0.0.1 at 2013-05-12 22:59:44 +1000
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-12 22:59:44 +1000
+
+
+Started GET "/assets/challenges.css?body=1" for 127.0.0.1 at 2013-05-12 22:59:44 +1000
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-05-12 22:59:44 +1000
+
+
+Started GET "/assets/challenges.js?body=1" for 127.0.0.1 at 2013-05-12 22:59:44 +1000
+
+
+Started GET "/assets/dashboard.js?body=1" for 127.0.0.1 at 2013-05-12 22:59:44 +1000
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2013-05-12 22:59:44 +1000
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-12 22:59:44 +1000
+
+
+Started GET "/dashboard" for 127.0.0.1 at 2013-05-12 23:03:56 +1000
+Processing by DashboardController#index as HTML
+  [1m[36mChallenge Load (0.2ms)[0m  [1mSELECT "challenges".* FROM "challenges" ORDER BY "challenges"."id" ASC LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  SELECT SUM("users"."commitment") AS sum_id FROM "users" WHERE "users"."challenge_id" = ?  [["challenge_id", 1]]
+  Rendered dashboard/index.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 14ms (Views: 11.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2013-05-12 23:03:56 +1000
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-12 23:03:56 +1000
+
+
+Started GET "/assets/challenges.css?body=1" for 127.0.0.1 at 2013-05-12 23:03:56 +1000
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-12 23:03:56 +1000
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-12 23:03:56 +1000
+
+
+Started GET "/assets/dashboard.css?body=1" for 127.0.0.1 at 2013-05-12 23:03:56 +1000
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-05-12 23:03:56 +1000
+
+
+Started GET "/assets/challenges.js?body=1" for 127.0.0.1 at 2013-05-12 23:03:56 +1000
+
+
+Started GET "/assets/dashboard.js?body=1" for 127.0.0.1 at 2013-05-12 23:03:56 +1000
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2013-05-12 23:03:56 +1000
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-12 23:03:56 +1000
+
+
+Started GET "/dashboard" for 127.0.0.1 at 2013-05-12 23:12:43 +1000
+Processing by DashboardController#index as HTML
+  [1m[36mChallenge Load (0.2ms)[0m  [1mSELECT "challenges".* FROM "challenges" ORDER BY "challenges"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  SELECT SUM("users"."commitment") AS sum_id FROM "users" WHERE "users"."challenge_id" = ?  [["challenge_id", 1]]
+  Rendered dashboard/index.html.erb within layouts/application (3.7ms)
+Completed 200 OK in 17ms (Views: 14.7ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/dashboard.css?body=1" for 127.0.0.1 at 2013-05-12 23:12:43 +1000
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-05-12 23:12:43 +1000
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2013-05-12 23:12:43 +1000
+
+
+Started GET "/assets/challenges.css?body=1" for 127.0.0.1 at 2013-05-12 23:12:43 +1000
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-05-12 23:12:43 +1000
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-05-12 23:12:43 +1000
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-05-12 23:12:43 +1000
+
+
+Started GET "/assets/challenges.js?body=1" for 127.0.0.1 at 2013-05-12 23:12:43 +1000
+
+
+Started GET "/assets/dashboard.js?body=1" for 127.0.0.1 at 2013-05-12 23:12:43 +1000
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2013-05-12 23:12:43 +1000
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-12 23:12:43 +1000

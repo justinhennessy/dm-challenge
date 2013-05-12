@@ -6,3 +6,5 @@
 <%else%>
   <%= distance_of_time_in_words(@challenge.start_date, Time.now) %> left!
 <%end%>
+
+<p>Team commitment is <%= @challenge.target %></p>
