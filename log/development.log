@@ -1286,3 +1286,11 @@ Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2013-05-12 23:12:43 +1000
 
 
 Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-05-12 23:12:43 +1000
+  [1m[36mChallenge Load (24.2ms)[0m  [1mSELECT "challenges".* FROM "challenges"[0m
+  [1m[35mChallenge Load (0.5ms)[0m  SELECT "challenges".* FROM "challenges"
+  [1m[36mChallenge Load (0.6ms)[0m  [1mSELECT "challenges".* FROM "challenges"[0m
+  [1m[35mChallenge Load (0.5ms)[0m  SELECT "challenges".* FROM "challenges" ORDER BY "challenges"."id" ASC LIMIT 1
+  [1m[36mChallenge Load (0.4ms)[0m  [1mSELECT "challenges".* FROM "challenges" ORDER BY "challenges"."id" ASC LIMIT 1[0m
+  [1m[35m (45.2ms)[0m  SELECT SUM("users"."commitment") AS sum_id FROM "users" WHERE "users"."challenge_id" = ?  [["challenge_id", 1]]
+  [1m[36mChallenge Load (0.6ms)[0m  [1mSELECT "challenges".* FROM "challenges" ORDER BY "challenges"."id" ASC LIMIT 1[0m
+  [1m[35m (44.8ms)[0m  SELECT SUM("users"."commitment") AS sum_id FROM "users" WHERE "users"."challenge_id" = ?  [["challenge_id", 1]]

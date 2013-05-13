@@ -3,17 +3,11 @@ require 'spec_helper'
 describe "Viewing the dashboard" do
 
   it "shows the number of days until the challenge starts" do
-    start_date = Time.now + 6.days
-    end_date = start_date + 31.days
+    now = Time.now
 
-    challenge = Challenge.create(name:          "Kilometer Smash!",
-                                  description:  "To make the most kilometers in 31 days",
-                                  start_date:   start_date,
-                                  end_date:     end_date)
+    challenge = FactoryGirl.create :challenge, start_date: now + 6.days, end_date: start_date + 31.days
 
-    current_date = Time.now
-
-    visit dashboard_path
+    visit "/dashboard"
 
     expect(page).to have_text("5 days to start!")
   end
