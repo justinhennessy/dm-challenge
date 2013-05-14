@@ -7,6 +7,7 @@ gem 'rails', '4.0.0.rc1'
 gem 'sqlite3'
 
 gem 'factory_girl_rails'
+gem 'ffaker'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0.rc1'
