@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "A challange" do
+describe "A challenge" do
   it "can show the total commitment/target of its participants" do
     challenge = FactoryGirl.create :challenge
 
@@ -32,5 +32,19 @@ describe "A challange" do
     user2 = FactoryGirl.create :user, challenge: challenge, commitment: 500
 
     expect(challenge.daily_average).to eq(48)
+  end
+
+  it "can show the deficit between the accumulated daily average and the accumulated actual" do
+    challenge = FactoryGirl.create :challenge
+
+    user1 = FactoryGirl.create :user, challenge: challenge, commitment: 1000
+    user2 = FactoryGirl.create :user, challenge: challenge, commitment: 500
+
+    FactoryGirl.create :actvitiy, user: user1, value: 100, date: Time.now - 2.days
+    FactoryGirl.create :actvitiy, user: user1, value: 5, date: Time.now - 1.days
+    FactoryGirl.create :actvitiy, user: user2, value: 50, date: Time.now - 2.days
+    FactoryGirl.create :actvitiy, user: user2, value: 200, date: Time.now - 1.days
+
+    expect(challenge.deficit).to eq(765)
   end
 end

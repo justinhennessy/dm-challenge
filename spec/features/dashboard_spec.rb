@@ -3,7 +3,6 @@ require 'spec_helper'
 describe "Viewing the dashboard" do
 
   it "shows the number of days until the challenge starts" do
-
     future_challenge = FactoryGirl.create :challenge, start_date: Time.now + 12.days, end_date: Time.now + 30.days
 
     visit dashboard_path
@@ -12,7 +11,6 @@ describe "Viewing the dashboard" do
   end
 
   it "shows the number of days left in a challenge once it has started" do
-    
     challenge = FactoryGirl.create :challenge
 
     visit dashboard_path
@@ -32,7 +30,21 @@ describe "Viewing the dashboard" do
     expect(page).to have_text("Team commitment is 1500")
   end
 
-  it "shows the teams accumulative total to date"
+  it "shows the teams accumulative total to date" do
+    challenge = FactoryGirl.create :challenge
+
+    user1 = FactoryGirl.create :user, challenge: challenge, commitment: 1000
+    user2 = FactoryGirl.create :user, challenge: challenge, commitment: 500
+
+    FactoryGirl.create :actvitiy, user: user1, value: 100, date: Time.now - 2.days
+    FactoryGirl.create :actvitiy, user: user1, value: 5, date: Time.now - 1.days
+    FactoryGirl.create :actvitiy, user: user2, value: 50, date: Time.now - 2.days
+    FactoryGirl.create :actvitiy, user: user2, value: 200, date: Time.now - 1.days
+
+    visit dashboard_path
+
+    expect(page).to have_text("Team accumulated total is 355")
+  end
 
   it "shows the accumulative total needed to hit challenge target to date" do
     challenge = FactoryGirl.create :challenge
@@ -45,6 +57,20 @@ describe "Viewing the dashboard" do
     expect(page).to have_text("Team target needed is 480")
   end
 
-  it "shows the teams deficit, the difference between actual and daily target"
+  it "shows the teams deficit, the difference between actual and daily target" do
+    challenge = FactoryGirl.create :challenge
+
+    user1 = FactoryGirl.create :user, challenge: challenge, commitment: 2000
+    user2 = FactoryGirl.create :user, challenge: challenge, commitment: 1500
+
+    FactoryGirl.create :actvitiy, user: user1, value: 100, date: Time.now - 2.days
+    FactoryGirl.create :actvitiy, user: user1, value: 5, date: Time.now - 1.days
+    FactoryGirl.create :actvitiy, user: user2, value: 50, date: Time.now - 2.days
+    FactoryGirl.create :actvitiy, user: user2, value: 200, date: Time.now - 1.days
+
+    visit dashboard_path
+
+    expect(page).to have_text("Team deficit to date is 765")
+  end
 
 end
