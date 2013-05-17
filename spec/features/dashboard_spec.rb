@@ -36,10 +36,10 @@ describe "Viewing the dashboard" do
     user1 = FactoryGirl.create :user, challenge: challenge, commitment: 1000
     user2 = FactoryGirl.create :user, challenge: challenge, commitment: 500
 
-    FactoryGirl.create :actvitiy, user: user1, value: 100, date: Time.now - 2.days
-    FactoryGirl.create :actvitiy, user: user1, value: 5, date: Time.now - 1.days
-    FactoryGirl.create :actvitiy, user: user2, value: 50, date: Time.now - 2.days
-    FactoryGirl.create :actvitiy, user: user2, value: 200, date: Time.now - 1.days
+    FactoryGirl.create :activity, user: user1, value: 100, date: Time.now - 2.days
+    FactoryGirl.create :activity, user: user1, value: 5, date: Time.now - 1.days
+    FactoryGirl.create :activity, user: user2, value: 50, date: Time.now - 2.days
+    FactoryGirl.create :activity, user: user2, value: 200, date: Time.now - 1.days
 
     visit dashboard_path
 
@@ -63,10 +63,10 @@ describe "Viewing the dashboard" do
     user1 = FactoryGirl.create :user, challenge: challenge, commitment: 2000
     user2 = FactoryGirl.create :user, challenge: challenge, commitment: 1500
 
-    FactoryGirl.create :actvitiy, user: user1, value: 100, date: Time.now - 2.days
-    FactoryGirl.create :actvitiy, user: user1, value: 5, date: Time.now - 1.days
-    FactoryGirl.create :actvitiy, user: user2, value: 50, date: Time.now - 2.days
-    FactoryGirl.create :actvitiy, user: user2, value: 200, date: Time.now - 1.days
+    FactoryGirl.create :activity, user: user1, value: 100, date: Time.now - 2.days
+    FactoryGirl.create :activity, user: user1, value: 5, date: Time.now - 1.days
+    FactoryGirl.create :activity, user: user2, value: 50, date: Time.now - 2.days
+    FactoryGirl.create :activity, user: user2, value: 200, date: Time.now - 1.days
 
     visit dashboard_path
 

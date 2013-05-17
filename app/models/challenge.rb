@@ -16,4 +16,12 @@ class Challenge < ActiveRecord::Base
   def target_needed_to_date
     daily_average * (Time.now.to_date - start_date).to_i
   end
+
+  def accumulated_total
+    users.inject(0) { |result, user| result + user.activity_total }
+  end
+
+  def deficit
+    target_needed_to_date - accumulated_total
+  end
 end
