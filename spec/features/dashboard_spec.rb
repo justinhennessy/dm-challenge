@@ -27,7 +27,7 @@ describe "Viewing the dashboard" do
 
     visit dashboard_path
 
-    expect(page).to have_text("Team commitment is 1500")
+    expect(page).to have_text("1500 Challenge Total")
   end
 
   it "shows the teams accumulative total to date" do
@@ -43,7 +43,7 @@ describe "Viewing the dashboard" do
 
     visit dashboard_path
 
-    expect(page).to have_text("Team accumulated total is 355")
+    expect(page).to have_text("355 Team Total")
   end
 
   it "shows the accumulative total needed to hit challenge target to date" do
@@ -54,7 +54,7 @@ describe "Viewing the dashboard" do
 
     visit dashboard_path
 
-    expect(page).to have_text("Team target needed is 480")
+    expect(page).to have_text("480 Needed")
   end
 
   it "shows the teams deficit, the difference between actual and daily target" do
@@ -70,7 +70,7 @@ describe "Viewing the dashboard" do
 
     visit dashboard_path
 
-    expect(page).to have_text("Team deficit to date is 765")
+    expect(page).to have_text("765 Deficit")
   end
 
 end

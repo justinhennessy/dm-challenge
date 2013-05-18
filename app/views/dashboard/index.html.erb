@@ -1,18 +1,32 @@
-<h1>DM Challenge</h1>
+<br><br><br><br><br>
+ 
+<h1 style="text-align: center "><%= @challenge.name %> - <%= challenge_countdown %> </h1>
+<br><br>
+<div style="text-align: center; width:100%; float:left;">
+  <div style="width:250px;margin: 0 auto;padding-left: 35px;">
+    <div style="text-align: center;">
+       <button class="btn btn-primary" style="height: 70px; font-size: 50px;"><%= @challenge.target %></button>
+      <p>Challenge Total</p>
+    </div>
+  </div>
 
-<h2><%= @challenge.name %></h2>
-<% if Time.now < @challenge.start_date %>
-  <%= distance_of_time_in_words(Time.now, @challenge.start_date) %> to start!
-<%else%>
-  <%= distance_of_time_in_words(@challenge.start_date, Time.now) %> left!
-<%end%>
+    <br><br>
+    
+    <div class='span2'></div>
+    <div style="margin: 0px auto;">
+      <div class='span2'style="text-align: center;">
+        <button class="btn btn-info" style="height: 70px; font-size:50px;"><%= @challenge.accumulated_total %></button>
+        <p>Team Total</p>
+      </div>
 
-<p>Team commitment is <%= @challenge.target %></p>
-
-<p>Team target needed is <%= @challenge.target_needed_to_date %></p>
-
-<p>Team accumulated total is <%= @challenge.accumulated_total %></p>
-
-<p>Team deficit to date is <%= @challenge.deficit %></p>
-
-
+      <div class='span2' style="text-align: center;">
+        <button class="btn btn-info" style="height: 70px; font-size: 50px;"><%= @challenge.target_needed_to_date %></button>
+        <p>Needed</p>
+      </div>
+       
+      <div class='span2' style="text-align: center;">
+        <button class="<%= style_deficit %>" style="height: 70px; font-size: 50px;"><%= @challenge.deficit %></button>
+        <p>Deficit</p>
+      </div>
+  </div>
+</div>

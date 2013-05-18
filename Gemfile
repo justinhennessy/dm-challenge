@@ -1,15 +1,22 @@
 source 'https://rubygems.org'
+ruby '2.0.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0.rc1'
 
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
-
 group :test, :development do
   gem 'factory_girl_rails'
   gem 'ffaker'
+  gem 'localtunnel'
+  gem 'sqlite3'
+  gem "rspec-rails"
 end
+
+group :production do
+  gem 'pg'
+end
+
+gem 'twitter-bootstrap-rails'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0.rc1'
@@ -37,13 +44,11 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-group :test, :development do
-  gem "rspec-rails"
-end
-
 group :test do
   gem "capybara"
 end
+
+gem 'activesupport'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
