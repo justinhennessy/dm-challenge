@@ -1,33 +1,32 @@
 <br><br><br><br><br>
  
-<div class="span8" style="text-align: center; float:left;">
-  <h1 style="text-align: center "><%= @challenge.name %> - <%= challenge_countdown %> </h1>
+<div style="text-align: center; width: 100%">
+  <h1>
+    <%= @challenge.name %><br>
+    <%= challenge_countdown %>
+  </h1>
 
   <br><br>
 
-  <div class="" style="">
     <div style="text-align: center;">
        <button class="btn btn-primary" style="height: 70px; font-size: 50px;"><%= @challenge.target %></button>
       <p>Challenge Total</p>
     </div>
-  </div>
 
-  <br><br>
-    
-  <div style="width: 70%; margin: 0 auto; text-align: center">
-    <div style="display: inline-block; text-align: center; padding: 20px">
-      <button class="btn btn-info" style="height: 70px; font-size:50px;"><%= @challenge.accumulated_total %></button>
-      <p>Team Total</p>
-    </div>
+    <div class="row" style="">
+      <div>
+        <button class="btn btn-info" style="height: 70px; font-size:50px;"><%= @challenge.accumulated_total %></button>
+        <p>Team Total</p>
+      </div>
 
-    <div style="display: inline-block; text-align: center; padding: 20px">
-      <button class="btn btn-info" style="height: 70px; font-size: 50px;"><%= @challenge.target_needed_to_date %></button>
-      <p>Needed</p>
-    </div>
+      <div style="">
+        <button class="btn btn-info" style="height: 70px; font-size: 50px;"><%= @challenge.target_needed_to_date %></button>
+        <p>Needed</p>
+      </div>
        
-    <div style="display: inline-block; text-align: center; padding: 20px">
-      <button class="<%= style_deficit %>" style="height: 70px; font-size: 50px;"><%= @challenge.deficit %></button>
-      <p>Deficit</p>
+      <div style="">
+        <button class="<%= style_deficit %>" style="height: 70px; font-size: 50px;"><%= @challenge.deficit %></button>
+        <p>Deficit</p>
+      </div>
     </div>
-  </div>
 </div>
