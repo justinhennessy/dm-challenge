@@ -1,9 +1,9 @@
 module DashboardHelper
   def challenge_countdown
     if Time.now < @challenge.start_date
-      content_tag("strong", distance_of_time_in_words(Time.now, @challenge.start_date) + " to start!")
+      content_tag("strong", distance_of_time_in_words(Time.now-1.days, @challenge.start_date) + " to start!")
     else
-      content_tag("strong", distance_of_time_in_words(@challenge.end_date, Time.now) + " left!")
+      content_tag("strong", distance_of_time_in_words(@challenge.end_date, Time.now-1.days) + " left!")
     end
   end
 

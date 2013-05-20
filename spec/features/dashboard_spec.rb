@@ -7,7 +7,7 @@ describe "Viewing the dashboard" do
 
     visit dashboard_path
 
-    expect(page).to have_text("11 days to start!")
+    expect(page).to have_text("12 days to start!")
   end
 
   it "shows the number of days left in a challenge once it has started" do
@@ -15,11 +15,10 @@ describe "Viewing the dashboard" do
 
     visit dashboard_path
 
-    expect(page).to have_text("11 days left!")
+    expect(page).to have_text("21 days left!")
   end
 
   it "shows the teams target for the current challenge" do
-
     challenge = FactoryGirl.create :challenge
 
     user1 = FactoryGirl.create :user, challenge: challenge, commitment: 1000
