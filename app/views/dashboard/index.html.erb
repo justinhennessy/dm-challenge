@@ -1,22 +1,18 @@
 <br><br><br><br><br>
  
-<div style="text-align: center; border: 2px solid; width: 100%">
-  <h1 style="text-align: center ">
+<div style="text-align: center; width: 100%">
+  <h1>
     <%= @challenge.name %><br>
     <%= challenge_countdown %>
   </h1>
 
   <br><br>
 
-
     <div style="text-align: center;">
        <button class="btn btn-primary" style="height: 70px; font-size: 50px;"><%= @challenge.target %></button>
       <p>Challenge Total</p>
     </div>
 
-
-  <br><br>
-    
     <div class="row" style="">
       <div>
         <button class="btn btn-info" style="height: 70px; font-size:50px;"><%= @challenge.accumulated_total %></button>
