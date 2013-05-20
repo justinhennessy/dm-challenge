@@ -1,32 +1,31 @@
-<br><br><br><br><br>
- 
-<div style="text-align: center; width: 100%">
-  <h1>
-    <%= @challenge.name %><br>
-    <%= challenge_countdown %>
-  </h1>
-
-  <br><br>
-
-    <div style="text-align: center;">
-       <button class="btn btn-primary" style="height: 70px; font-size: 50px;"><%= @challenge.target %></button>
+<div style="text-align: center">
+  <div class="row">
+    <h1 class="span9">
+      <%= @challenge.name %><br>
+      <small><%= challenge_countdown %></small>
+    </h1>
+  </div>
+  <div class="row">
+    <div class="span3 offset3">
+      <button class="btn btn-primary btn-block" style="height: 70px; font-size: 50px;"><%= @challenge.target %></button>
       <p>Challenge Total</p>
     </div>
+  </div>
 
-    <div class="row" style="">
-      <div>
-        <button class="btn btn-info" style="height: 70px; font-size:50px;"><%= @challenge.accumulated_total %></button>
-        <p>Team Total</p>
-      </div>
-
-      <div style="">
-        <button class="btn btn-info" style="height: 70px; font-size: 50px;"><%= @challenge.target_needed_to_date %></button>
-        <p>Needed</p>
-      </div>
-       
-      <div style="">
-        <button class="<%= style_deficit %>" style="height: 70px; font-size: 50px;"><%= @challenge.deficit %></button>
-        <p>Deficit</p>
-      </div>
+  <div class="row" style="">
+    <div class="span3">
+      <button class="btn btn-info btn-block" style="height: 70px; font-size:50px;"><%= @challenge.accumulated_total %></button>
+      <p>Team Total</p>
     </div>
+
+    <div class="span3">
+      <button class="btn btn-info btn-block" style="height: 70px; font-size: 50px;"><%= @challenge.target_needed_to_date %></button>
+      <p>Needed</p>
+    </div>
+
+    <div class="span3">
+      <button class="<%= style_deficit %> btn-block" style="height: 70px; font-size: 50px;"><%= @challenge.deficit %></button>
+      <p>Deficit</p>
+    </div>
+  </div>
 </div>
