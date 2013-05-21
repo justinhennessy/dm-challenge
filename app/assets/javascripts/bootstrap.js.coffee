@@ -1,4 +1,9 @@
-jQuery ->
-  $("a[rel=popover]").popover()
-  $(".tooltip").tooltip()
-  $("a[rel=tooltip]").tooltip()
+!(($) ->
+  $('[rel=tooltip], [data-toggle=tooltip]').tooltip
+    trigger: 'hover focus'
+
+  $('[rel=popover], [data-toggle=popover]').popover
+    trigger: 'hover'
+    animation: true
+    html: true
+)(jQuery)
