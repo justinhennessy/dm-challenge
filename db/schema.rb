@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130516124757) do
+ActiveRecord::Schema.define(version: 20130521141352) do
 
   create_table "activities", force: true do |t|
     t.date     "date"
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20130516124757) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "challenge_id"
+    t.string   "nickname"
   end
 
 end

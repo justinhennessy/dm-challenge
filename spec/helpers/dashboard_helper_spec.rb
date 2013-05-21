@@ -14,4 +14,6 @@ describe DashboardHelper do
     assign(:challenge, challenge)
     helper.challenge_countdown.should include("11 days to start!")
   end
+
+  it "displays a list of team members and their stats"
 end

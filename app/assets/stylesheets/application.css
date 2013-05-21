@@ -12,6 +12,4 @@
  *= require_tree .
  */
  
-body {padding-top:60px;}
-
-.myClass{ position: relative;}
+body {padding-top:40px;}
