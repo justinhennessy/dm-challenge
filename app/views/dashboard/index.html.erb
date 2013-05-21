@@ -28,4 +28,37 @@
       <p>Deficit</p>
     </div>
   </div>
+
+  <br><br><br>
+
+
+
+<div class="modal hide fade" id="myModal">
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h3>Modal header</h3>
+  </div>
+  <div class="modal-body">
+    <p>One fine body…</p>
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn">Close</a>
+    <a href="#" class="btn btn-primary">Save changes</a>
+  </div>
+</div>
+
+<%= link_to 'Launch Modal', '#', class: 'btn', data: {
+  toggle: 'modal',
+  target: '#myModal'
+} %>
+
+<%= link_to 'Hover Popover', '', class: 'btn', data: {
+  toggle: 'popover',
+  title: 'This is the title',
+  content: 'Vivamus sagittis lacus vel augue laoreet rutrum faucibus.',
+  placement: 'bottom'
+} %>
+<br />
+<div class="row" style="padding-top: 20px">
+  <p class="well span5 offset2">Fusce dapibus, <span style="border-bottom:1px dashed #ff0066; cursor:help;" rel="tooltip" title="Tooltip!! Hooray!">tellus</span> ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Nullam id dolor id nibh ultricies vehicula ut id elit. Maecenas sed diam eget risus varius blandit sit amet non magna. Maecenas sed diam eget risus varius blandit sit amet non magna. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Etiam porta sem malesuada magna mollis euismod.</p>
 </div>
