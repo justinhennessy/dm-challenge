@@ -22,6 +22,11 @@ class Challenge < ActiveRecord::Base
   end
 
   def deficit
-    target_needed_to_date - accumulated_total
+    deficit = target_needed_to_date - accumulated_total
+    if deficit < 0
+      0
+    else
+      deficit
+    end
   end
 end

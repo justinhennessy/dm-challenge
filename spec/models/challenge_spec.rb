@@ -48,6 +48,20 @@ describe "A challenge" do
     expect(challenge.deficit).to eq(125)
   end
 
+  it "shows a 0 deficit if the its negative" do
+    challenge = FactoryGirl.create :challenge
+
+    user1 = FactoryGirl.create :user, challenge: challenge, commitment: 500
+    user2 = FactoryGirl.create :user, challenge: challenge, commitment: 500
+
+    FactoryGirl.create :activity, user: user1, value: 100, date: Time.now - 2.days
+    FactoryGirl.create :activity, user: user1, value: 5, date: Time.now - 1.days
+    FactoryGirl.create :activity, user: user2, value: 50, date: Time.now - 2.days
+    FactoryGirl.create :activity, user: user2, value: 200, date: Time.now - 1.days
+
+    expect(challenge.deficit).to eq(0)
+  end
+
   it "can show the team total accumulated to date" do
     challenge = FactoryGirl.create :challenge
 
