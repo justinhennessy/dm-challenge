@@ -1,4 +1,5 @@
 DmChallenge::Application.routes.draw do
+  root "/dashboard"
   resources :users
 
   resources :challenges
