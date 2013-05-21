@@ -72,4 +72,8 @@ describe "Viewing the dashboard" do
     expect(page).to have_text("765 Deficit")
   end
 
+  it "shows a list of users in a challenge with their stats"
+
+  it "shows a users prefered name in place of name"
+
 end
