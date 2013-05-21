@@ -6,4 +6,7 @@ class User < ActiveRecord::Base
     activities.sum(:value)
   end
 
+  def percent_completed
+    ((activity_total.to_f / commitment) * 100).to_i
+  end
 end
