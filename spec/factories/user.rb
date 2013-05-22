@@ -2,7 +2,7 @@ FactoryGirl.define do
   factory :user do
     name        { Faker::Name.name }
     email       { Faker::Internet.email }
-    nickname    ''
+    nickname    'blah'
     challenge
     commitment  1000
   end

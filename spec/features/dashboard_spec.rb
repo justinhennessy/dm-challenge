@@ -2,6 +2,29 @@ require 'spec_helper'
 
 describe "Viewing the dashboard" do
 
+  it "shows a list of team members and their stats" do
+    challenge = FactoryGirl.create :challenge, start_date: Time.now - 10.days, end_date: Time.now + 21.days
+
+    user1 = FactoryGirl.create :user, challenge: challenge, commitment: 1000
+    user2 = FactoryGirl.create :user, challenge: challenge, commitment: 500
+
+    FactoryGirl.create :activity, user: user1, value: 100, date: Time.now - 2.days
+    FactoryGirl.create :activity, user: user1, value: 5, date: Time.now - 1.days
+    FactoryGirl.create :activity, user: user2, value: 50, date: Time.now - 2.days
+    FactoryGirl.create :activity, user: user2, value: 200, date: Time.now - 1.days
+
+    visit dashboard_path
+
+    expect(page).to have_text(user1.prefered_name)
+    expect(page).to have_text(user2.prefered_name)
+
+    expect(page).to have_text(user1.activity_total)
+    expect(page).to have_text(user2.activity_total)
+
+    expect(page).to have_text(user1.percent_completed)
+    expect(page).to have_text(user2.percent_completed)
+  end
+
   it "shows the number of days until the challenge starts" do
     future_challenge = FactoryGirl.create :challenge, start_date: Time.now + 12.days, end_date: Time.now + 30.days
 
@@ -30,7 +53,7 @@ describe "Viewing the dashboard" do
   end
 
   it "shows the teams accumulative total to date" do
-    challenge = FactoryGirl.create :challenge
+    challenge = FactoryGirl.create :challenge, start_date: Time.now - 10.days, end_date: Time.now + 21.days
 
     user1 = FactoryGirl.create :user, challenge: challenge, commitment: 1000
     user2 = FactoryGirl.create :user, challenge: challenge, commitment: 500
@@ -46,7 +69,7 @@ describe "Viewing the dashboard" do
   end
 
   it "shows the accumulative total needed to hit challenge target to date" do
-    challenge = FactoryGirl.create :challenge
+    challenge = FactoryGirl.create :challenge, start_date: Time.now - 10.days, end_date: Time.now + 21.days
 
     user1 = FactoryGirl.create :user, challenge: challenge, commitment: 1000
     user2 = FactoryGirl.create :user, challenge: challenge, commitment: 500
@@ -57,7 +80,7 @@ describe "Viewing the dashboard" do
   end
 
   it "shows the teams deficit, the difference between actual and daily target" do
-    challenge = FactoryGirl.create :challenge
+    challenge = FactoryGirl.create :challenge, start_date: Time.now - 10.days, end_date: Time.now + 21.days
 
     user1 = FactoryGirl.create :user, challenge: challenge, commitment: 2000
     user2 = FactoryGirl.create :user, challenge: challenge, commitment: 1500
