@@ -1,13 +1,15 @@
 <div style="text-align: center">
   <div class="row">
     <h1 class="span9">
-      <div class="hidden-phone"><%= @challenge.name %></div>
+      <div class="hidden-phone"><%= @challenge.name %><br>
+        <small><%= @challenge.start_date %> - <%= @challenge.end_date %></small>
+      </div>
       <%= challenge_countdown %>
     </h1>
   </div>
   <div class="row">
     <div class="span3 offset3">
-      <button class="btn btn-primary btn-block" style="height: 70px; font-size: 50px;"><%= @challenge.target %></button>
+      <button class="btn <%= style_challenge %> btn-block" style="height: 70px; font-size: 50px;"><%= @challenge.target %></button>
       <p>Challenge Total</p>
     </div>
   </div>
@@ -24,7 +26,7 @@
     </div>
 
     <div class="span3">
-      <button class="<%= style_deficit %> btn-block" style="height: 70px; font-size: 50px;"><%= @challenge.deficit %></button>
+      <button class="btn <%= style_deficit %> btn-block" style="height: 70px; font-size: 50px;"><%= @challenge.deficit %></button>
       <p>Deficit</p>
     </div>
   </div>
