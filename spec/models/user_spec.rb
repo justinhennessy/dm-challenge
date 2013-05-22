@@ -18,4 +18,10 @@ describe "A user" do
 
     expect(user.percent_completed).to eq(20)
   end
+
+  it "can show a users nickname if present instead of name" do
+    user = FactoryGirl.create :user, nickname: "Raezor"
+
+    expect(user.prefered_name).to eq("Raezor")
+  end
 end
