@@ -16,4 +16,8 @@ module DashboardHelper
   def deficit_warning_class
     @challenge.deficit <= 100 ? "btn-warning" : "btn-danger"
   end
+
+  def style_challenge
+    @challenge.deficit == 0 ? "btn-success" : ""
+  end
 end
