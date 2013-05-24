@@ -44,7 +44,7 @@
           </tr>  
         <%@challenge.users.each do |u|%>
           <tr>
-            <td><%= u.name %></td>
+            <td><%= link_to u.prefered_name, user_activities_path(u) %></td>
             <td><%= u.activity_total %></td>
             <td><%= u.percent_completed %>%</td>
           </tr>  

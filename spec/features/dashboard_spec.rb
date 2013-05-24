@@ -95,9 +95,13 @@ describe "Viewing the dashboard" do
     expect(page).to have_text("765 Deficit")
   end
 
-  it "shows a list of users in a challenge with their stats"
+  it "shows a users prefered name in place of name" do
+    user1 = FactoryGirl.create :user, nickname: "Drill Sergeant"
 
-  it "shows a users prefered name in place of name"
+    visit dashboard_path
+
+    expect(page).to have_text(user1.nickname)
+  end
 
   it "shows a link that a user can click to see a list of their activities for the current challenge" do
     challenge = FactoryGirl.create :challenge, start_date: Time.now - 10.days, end_date: Time.now + 21.days
@@ -112,7 +116,7 @@ describe "Viewing the dashboard" do
 
     click_link user1.prefered_name
 
-    expect(current_path).to eq(activities_path)
+    expect(current_path).to eq(user_activities_path(user1))
 
     expect(page).to have_text(user1.prefered_name)
     expect(page).to have_text(user1.activities.first.value)
