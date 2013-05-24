@@ -99,4 +99,25 @@ describe "Viewing the dashboard" do
 
   it "shows a users prefered name in place of name"
 
+  it "shows a link that a user can click to see a list of their activities for the current challenge" do
+    challenge = FactoryGirl.create :challenge, start_date: Time.now - 10.days, end_date: Time.now + 21.days
+
+    user1 = FactoryGirl.create :user, challenge: challenge, commitment: 2000
+    user2 = FactoryGirl.create :user, challenge: challenge, commitment: 1500
+
+    FactoryGirl.create :activity, user: user1, value: 100, date: Time.now - 2.days
+    FactoryGirl.create :activity, user: user1, value: 5, date: Time.now - 1.days
+
+    visit dashboard_path
+
+    click_link user1.prefered_name
+
+    expect(current_path).to eq(activities_path)
+
+    expect(page).to have_text(user1.prefered_name)
+    expect(page).to have_text(user1.activities.first.value)
+    expect(page).to have_text(user1.activities.first.date)
+    expect(page).to have_text(user1.activities.last.value)
+    expect(page).to have_text(user1.activities.last.date)
+  end
 end
