@@ -11,6 +11,6 @@ class User < ActiveRecord::Base
   end
 
   def preferred_name
-    nickname.blank? ? name : nickname
+    nickname.presence || name
   end
 end
