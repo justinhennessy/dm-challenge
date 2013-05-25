@@ -37,17 +37,21 @@
     <div class="span3 offset3">
       <strong>Individual Totals</strong>
       <table class="table table-striped table-bordered">
-          <tr>
-            <td>Name</td>
-            <td>KMS</td>
-            <td>% Complete</td>  
-          </tr>  
-        <% @challenge.users.each do |user| %>
-          <tr>
-            <td><%= link_to user.prefered_name, user_activities_path(u) %></td>
-            <td><%= user.activity_total %></td>
-            <td><%= user.percent_completed %>%</td>
-          </tr>  
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>KMS</th>
+              <th>% Complete</th>  
+            </tr>
+          </thead>
+          <tbody>  
+            <% @challenge.users.each do |user| %>
+            <tr>
+              <td><%= link_to user.preferred_name, user_activities_path(user) %></td>
+              <td><%= user.activity_total %></td>
+              <td><%= user.percent_completed %>%</td>
+            </tr>
+          </tbody>  
         <%end%>
       </table>
     </div>
