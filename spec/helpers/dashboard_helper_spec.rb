@@ -36,5 +36,18 @@ describe DashboardHelper do
     helper.style_challenge.should include("btn-success")
   end
 
-  it "displays a list of team members and their stats"
+  it "display a dark blue challenge button if deficit is above 0" do
+        challenge = FactoryGirl.create :challenge
+
+    user1 = FactoryGirl.create :user, challenge: challenge, commitment: 1000
+    user2 = FactoryGirl.create :user, challenge: challenge, commitment: 1000
+
+    FactoryGirl.create :activity, user: user1, value: 100, date: Time.now - 2.days
+    FactoryGirl.create :activity, user: user1, value: 5, date: Time.now - 1.days
+    FactoryGirl.create :activity, user: user2, value: 50, date: Time.now - 2.days
+    FactoryGirl.create :activity, user: user2, value: 200, date: Time.now - 1.days
+
+    assign(:challenge, challenge)
+    helper.style_challenge.should include("btn-primary")
+  end
 end
