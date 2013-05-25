@@ -12,7 +12,7 @@ module DashboardHelper
   end
 
   def style_challenge
-    @challenge.deficit == 0 ? "btn-success" : ""
+    @challenge.deficit == 0 ? "btn-success" : "btn-primary"
   end
 
   private
