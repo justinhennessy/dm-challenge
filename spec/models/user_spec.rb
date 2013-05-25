@@ -2,26 +2,38 @@ require 'spec_helper'
 
 describe "A user" do
   it "can show total number of activities all time" do
-    user = FactoryGirl.create :user
+    user = create_user commitment: 1000
 
-    FactoryGirl.create :activity, user: user, value: 100, date: Time.now - 2.days
-    FactoryGirl.create :activity, user: user, value: 5, date: Time.now - 1.days
+    create_activity user: user, value: 100, date: 2.days.ago
+    create_activity user: user, value: 5, date: 1.day.ago
 
     expect(user.activity_total).to eq(105)
   end
 
   it "can show the % completed of a commitment" do
-    user = FactoryGirl.create :user, commitment: 1000
+    user = create_user commitment: 1000
 
-    FactoryGirl.create :activity, user: user, value: 100
-    FactoryGirl.create :activity, user: user, value: 100
+    create_activity user: user, value: 100, date: 2.days.ago
+    create_activity user: user, value: 100, date: 1.day.ago
 
     expect(user.percent_completed).to eq(20)
   end
 
   it "can show a users nickname if present instead of name" do
-    user = FactoryGirl.create :user, nickname: "Raezor"
+    user = create_user nickname: "Raezor"
 
-    expect(user.prefered_name).to eq("Raezor")
+    expect(user.preferred_name).to eq("Raezor")
+  end
+
+  def create_challenge attributes = {}
+    FactoryGirl.create :challenge, attributes
+  end
+
+  def create_user attributes = {}
+    FactoryGirl.create :user, attributes
+  end
+
+  def create_activity attributes = {}
+    FactoryGirl.create :activity, attributes
   end
 end
