@@ -42,11 +42,11 @@
             <td>KMS</td>
             <td>% Complete</td>  
           </tr>  
-        <%@challenge.users.each do |u|%>
+        <% @challenge.users.each do |user| %>
           <tr>
-            <td><%= link_to u.prefered_name, user_activities_path(u) %></td>
-            <td><%= u.activity_total %></td>
-            <td><%= u.percent_completed %>%</td>
+            <td><%= link_to user.prefered_name, user_activities_path(u) %></td>
+            <td><%= user.activity_total %></td>
+            <td><%= user.percent_completed %>%</td>
           </tr>  
         <%end%>
       </table>
