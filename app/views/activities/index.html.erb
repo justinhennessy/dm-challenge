@@ -8,10 +8,10 @@
     </tr>
   </thead>
   <tbody>  
-    <%@activities.each do |a|%>
+    <% @activities.each do |activity| %>
       <tr>
-        <td><%= a.date %></td>
-        <td><%= a.value %></td>
+        <td><%= activity.date %></td>
+        <td><%= activity.value %></td>
       </tr>
     <%end%>
   </tbody>
