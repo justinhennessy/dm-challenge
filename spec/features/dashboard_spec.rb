@@ -15,8 +15,8 @@ describe "Viewing the dashboard" do
 
     visit dashboard_path
 
-    expect(page).to have_text(user1.prefered_name)
-    expect(page).to have_text(user2.prefered_name)
+    expect(page).to have_text(user1.preferred_name)
+    expect(page).to have_text(user2.preferred_name)
 
     expect(page).to have_text(user1.activity_total)
     expect(page).to have_text(user2.activity_total)
@@ -111,10 +111,10 @@ describe "Viewing the dashboard" do
     create_activity user: user1, value: 5, date: 1.day.ago
 
     visit dashboard_path
-    click_link user1.prefered_name
+    click_link user1.preferred_name
 
     expect(current_path).to eq(user_activities_path(user1))
-    expect(page).to have_text(user1.prefered_name)
+    expect(page).to have_text(user1.preferred_name)
     expect(page).to have_text(user1.activities.first.value)
     expect(page).to have_text(user1.activities.first.date)
     expect(page).to have_text(user1.activities.last.value)

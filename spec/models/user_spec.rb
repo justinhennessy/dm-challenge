@@ -22,6 +22,6 @@ describe "A user" do
   it "can show a users nickname if present instead of name" do
     user = FactoryGirl.create :user, nickname: "Raezor"
 
-    expect(user.prefered_name).to eq("Raezor")
+    expect(user.preferred_name).to eq("Raezor")
   end
 end
