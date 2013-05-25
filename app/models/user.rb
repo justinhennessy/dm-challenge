@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
     ((activity_total.to_f / commitment) * 100).to_i
   end
 
-  def prefered_name
-    nickname.blank? ? name : nickname
+  def preferred_name
+    nickname.presence || name
   end
 end
