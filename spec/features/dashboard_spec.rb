@@ -2,20 +2,7 @@ require 'spec_helper'
 
 describe "Viewing the dashboard" do
 
-  it "shows a yellow jersey on the individual with the most kms" do
-    challenge = create_challenge start_date: 10.days.ago, end_date: 21.days.from_now
-    user1     = create_user challenge: challenge, commitment: 1000
-    user2     = create_user challenge: challenge, commitment: 500
-    create_activity user: user1, value: 100, date: 2.days.ago
-    create_activity user: user1, value: 5, date: 1.day.ago
-    create_activity user: user2, value: 50, date: 2.days.ago
-    create_activity user: user2, value: 200, date: 1.day.ago
-
-    visit dashboard_path
-
-    expect(page).to have_text(user2.preferred_name)
-    expect(page).to have_css('img', text: "yellow_jersey_small.png")    
-  end
+  it "shows a yellow jersey on the individual with the most kms"
 
   it "shows a list of team members and their stats" do
     challenge = create_challenge start_date: 10.days.ago, end_date: 21.days.from_now

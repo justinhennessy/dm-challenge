@@ -10,7 +10,7 @@ describe "A challenge" do
     create_activity user: user2, value: 50, date: 2.days.ago
     create_activity user: user2, value: 200, date: 1.day.ago
 
-    expect(challenge.yellow_jersey?).to eq(user2)
+    expect(challenge.user_with_yellow_jersey).to eq(user2)
   end
 
   it "can show the total commitment/target of its participants" do
