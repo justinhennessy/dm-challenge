@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe "Viewing the dashboard" do
 
+  it "shows a yellow jersey on the individual with the most kms"
+
   it "shows a list of team members and their stats" do
     challenge = create_challenge start_date: 10.days.ago, end_date: 21.days.from_now
     user1     = create_user challenge: challenge, commitment: 1000

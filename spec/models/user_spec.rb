@@ -25,6 +25,18 @@ describe "A user" do
     expect(user.preferred_name).to eq("Raezor")
   end
 
+  it "can show if a user has the yellow jersey" do
+    user1 = create_user
+    user2 = create_user
+
+    create_activity user: user1, value: 100, date: 2.days.ago
+    create_activity user: user1, value: 300, date: 1.day.ago
+    create_activity user: user2, value: 100, date: 1.day.ago
+    create_activity user: user2, value: 100, date: 1.day.ago
+
+    expect(user1.yellow_jersey?).to eq(TRUE)
+  end
+
   def create_challenge attributes = {}
     FactoryGirl.create :challenge, attributes
   end

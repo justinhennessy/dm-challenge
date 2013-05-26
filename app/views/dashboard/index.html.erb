@@ -34,7 +34,7 @@
   <br>
   
   <div class="row">
-    <div class="span3 offset3">
+    <div class="span5 offset2">
       <strong>Individual Totals</strong>
       <table class="table table-striped table-bordered">
           <thead>
@@ -44,10 +44,10 @@
               <th>Complete</th>  
             </tr>
           </thead>
-          <tbody>  
+          <tbody> 
             <% @challenge.users.each do |user| %>
             <tr>
-              <td><%= link_to user.preferred_name, user_activities_path(user) %></td>
+              <td><%= link_to user.preferred_name, user_activities_path(user) %> <%= image_tag 'yellow_jersey_small.png' if user == @challenge.user_with_yellow_jersey %></td>
               <td><%= user.activity_total %></td>
               <td><%= user.percent_completed %>%</td>
             </tr>

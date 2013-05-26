@@ -25,4 +25,8 @@ class Challenge < ActiveRecord::Base
     deficit = target_needed_to_date - accumulated_total
     deficit < 0 ? 0 : deficit
   end
+
+  def user_with_yellow_jersey
+    users.sort_by(&:activity_total).last
+  end
 end

@@ -13,4 +13,8 @@ class User < ActiveRecord::Base
   def preferred_name
     nickname.presence || name
   end
+
+  def yellow_jersey?
+    challenge.user_with_yellow_jersey == self
+  end
 end
