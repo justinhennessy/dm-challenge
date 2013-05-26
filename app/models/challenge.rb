@@ -25,4 +25,11 @@ class Challenge < ActiveRecord::Base
     deficit = target_needed_to_date - accumulated_total
     deficit < 0 ? 0 : deficit
   end
+
+  def yellow_jersey?
+    #is it better to return :id or the user object?
+    users.inject(User.new) do |highest_kms, user|
+      highest_kms = user unless user.activity_total < highest_kms.activity_total
+    end
+  end
 end

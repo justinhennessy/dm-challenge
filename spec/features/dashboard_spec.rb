@@ -13,7 +13,7 @@ describe "Viewing the dashboard" do
 
     visit dashboard_path
 
-    expect(page).to have_text(user2.preferred_name + "(YJ)")    
+    expect(page).to have_text(user2.preferred_name + " (YJ)")    
   end
 
   it "shows a list of team members and their stats" do
