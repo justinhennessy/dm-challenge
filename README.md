@@ -1,7 +1,7 @@
 # DMChallenge
 
-DMChallenge is for passionate @strava users but would like a more team like
-experience to achieve a common goal that each member of a challenge commit to.
+DMChallenge is for passionate cyclists that are after a tool to help a team
+to achieve a common goal that each member commit to.
 
 ## Required Environment
 
