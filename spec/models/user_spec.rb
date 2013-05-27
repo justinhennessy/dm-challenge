@@ -1,6 +1,26 @@
 require 'spec_helper'
 
 describe "A user" do
+  it "can show sum of activities within a date range" do
+    challenge = create_challenge start_date: 5.days.ago, end_date: 10.days.from_now
+    user      = create_user challenge: challenge
+    create_activity user: user, value: 100, date: 1.days.ago
+    create_activity user: user, value: 100, date: 2.day.ago
+    create_activity user: user, value: 100, date: 3.days.ago
+    create_activity user: user, value: 5, date: 10.day.ago
+
+    expect(user.sum_of_activities_for(challenge)).to eq(300)
+  end
+
+  it "can show actvities within a date range" do
+    challenge = create_challenge start_date: 5.days.ago, end_date: 10.days.from_now
+    user      = create_user challenge: challenge
+    activity1 = create_activity user: user, value: 100, date: 1.days.ago
+    create_activity user: user, value: 5, date: 10.day.ago
+
+    expect(user.activities_for(challenge)).to eq([] << activity1)
+  end
+
   it "can show total number of activities all time" do
     user = create_user commitment: 1000
 
