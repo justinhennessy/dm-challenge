@@ -1,13 +1,24 @@
 require 'spec_helper'
 
 describe "A user" do
-  it "can show total number of activities all time" do
-    user = create_user commitment: 1000
+  it "can show sum of activities within a date range" do
+    challenge = create_challenge start_date: 5.days.ago, end_date: 10.days.from_now
+    user      = create_user challenge: challenge
+    create_activity user: user, value: 100, date: 1.days.ago
+    create_activity user: user, value: 100, date: 2.day.ago
+    create_activity user: user, value: 100, date: 3.days.ago
+    create_activity user: user, value: 5, date: 10.day.ago
 
-    create_activity user: user, value: 100, date: 2.days.ago
-    create_activity user: user, value: 5, date: 1.day.ago
+    expect(user.sum_of_activities_for(challenge)).to eq(300)
+  end
 
-    expect(user.activity_total).to eq(105)
+  it "can show actvities within a date range" do
+    challenge = create_challenge start_date: 5.days.ago, end_date: 10.days.from_now
+    user      = create_user challenge: challenge
+    activity1 = create_activity user: user, value: 100, date: 1.days.ago
+    create_activity user: user, value: 5, date: 10.day.ago
+
+    expect(user.activities_for(challenge)).to eq([] << activity1)
   end
 
   it "can show the % completed of a commitment" do
@@ -34,7 +45,7 @@ describe "A user" do
     create_activity user: user2, value: 100, date: 1.day.ago
     create_activity user: user2, value: 100, date: 1.day.ago
 
-    expect(user1.yellow_jersey?).to eq(TRUE)
+    expect(user1.highest_kilometers?).to eq(TRUE)
   end
 
   def create_challenge attributes = {}
