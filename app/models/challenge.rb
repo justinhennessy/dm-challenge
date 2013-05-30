@@ -18,7 +18,7 @@ class Challenge < ActiveRecord::Base
   end
 
   def accumulated_total
-    users.inject(0) { |result, user| result + user.activity_total }
+    users.inject(0) { |result, user| result + user_activity_sum(user) }
   end
 
   def deficit
@@ -26,12 +26,17 @@ class Challenge < ActiveRecord::Base
     deficit < 0 ? 0 : deficit
   end
 
-  def user_with_yellow_jersey
-  # TODO
-  #users.sort_by(&:activity_total).last
+  def user_with_highest_kilometers
   highest = User.new
   users.each do |user|
-    user = user.activities.where('date > "' + start_date.to_s + '" and date < "' + end_date.to_s + '"').sum(:value)
+    highest = user if user_activity_sum(user) > user_activity_sum(highest)
   end
+  highest
+  end
+
+  private
+
+  def user_activity_sum(user)
+    user.activities.where('date > "' + start_date.to_s + '" and date < "' + end_date.to_s + '"').sum(:value)
   end
 end

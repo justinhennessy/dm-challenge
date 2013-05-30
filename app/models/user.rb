@@ -17,14 +17,14 @@ class User < ActiveRecord::Base
   end
 
   def percent_completed
-    ((activity_total.to_f / commitment) * 100).to_i
+    ((sum_of_activities_for(challenge).to_f / commitment) * 100).to_i
   end
 
   def preferred_name
     nickname.presence || name
   end
 
-  def yellow_jersey?
-    challenge.user_with_yellow_jersey == self
+  def highest_kilometers?
+    challenge.user_with_highest_kilometers == self
   end
 end

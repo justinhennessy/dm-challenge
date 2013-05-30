@@ -21,15 +21,6 @@ describe "A user" do
     expect(user.activities_for(challenge)).to eq([] << activity1)
   end
 
-  it "can show total number of activities all time" do
-    user = create_user commitment: 1000
-
-    create_activity user: user, value: 100, date: 2.days.ago
-    create_activity user: user, value: 5, date: 1.day.ago
-
-    expect(user.activity_total).to eq(105)
-  end
-
   it "can show the % completed of a commitment" do
     user = create_user commitment: 1000
 
@@ -54,7 +45,7 @@ describe "A user" do
     create_activity user: user2, value: 100, date: 1.day.ago
     create_activity user: user2, value: 100, date: 1.day.ago
 
-    expect(user1.yellow_jersey?).to eq(TRUE)
+    expect(user1.highest_kilometers?).to eq(TRUE)
   end
 
   def create_challenge attributes = {}
