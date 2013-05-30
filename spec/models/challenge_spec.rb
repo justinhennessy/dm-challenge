@@ -7,6 +7,7 @@ describe "A challenge" do
     user2     = create_user challenge: challenge, commitment: 500
     create_activity user: user1, value: 100, date: 2.days.ago
     create_activity user: user1, value: 5, date: 1.day.ago
+    create_activity user: user1, value: 1000, date: 30.day.ago
     create_activity user: user2, value: 50, date: 2.days.ago
     create_activity user: user2, value: 200, date: 1.day.ago
 

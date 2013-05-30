@@ -27,6 +27,11 @@ class Challenge < ActiveRecord::Base
   end
 
   def user_with_yellow_jersey
-    users.sort_by(&:activity_total).last
+  # TODO
+  #users.sort_by(&:activity_total).last
+  highest = User.new
+  users.each do |user|
+    user = user.activities.where('date > "' + start_date.to_s + '" and date < "' + end_date.to_s + '"').sum(:value)
+  end
   end
 end
