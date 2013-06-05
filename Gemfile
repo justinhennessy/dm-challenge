@@ -8,7 +8,7 @@ group :test, :development do
   gem 'factory_girl_rails'
   gem 'ffaker'
   gem 'localtunnel'
-  gem 'sqlite3'
+  gem "sqlite3", :platform => [:ruby, :mswin, :mingw]
   gem "rspec-rails"
 end
 
