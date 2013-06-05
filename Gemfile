@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '1.9.3'
+ruby '2.0.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0.rc1'
@@ -10,6 +10,9 @@ group :test, :development do
   gem 'localtunnel'
   gem "sqlite3", :platform => [:ruby, :mswin, :mingw]
   gem "rspec-rails"
+  gem "capybara"
+  gem "rake"
+  gem "travis-lint"
 end
 
 group :production do
@@ -42,12 +45,6 @@ gem 'jbuilder', '~> 1.0.1'
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
-end
-
-group :test do
-  gem "capybara"
-  gem "rake"
-  gem "travis-lint"
 end
 
 gem 'activesupport'
