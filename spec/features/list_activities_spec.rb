@@ -8,11 +8,11 @@ describe "Viewing a users activity list" do
   it "shows a link for adding new activities" do
     user = create_user
 
-    visit user_activities(user1)
+    visit user_activities_path(user)
 
     click_link 'Add'
 
-    expect(current_path).to eq(new_user_activity_path)
+    expect(current_path).to eq(new_user_activity_path(user))
   end
 
   def create_challenge attributes = {}
