@@ -47,6 +47,7 @@ end
 group :test do
   gem "capybara"
   gem "rake"
+  gem "travis-lint"
 end
 
 gem 'activesupport'
