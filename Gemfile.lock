@@ -159,6 +159,7 @@ DEPENDENCIES
   localtunnel
   pg
   rails (= 4.0.0.rc1)
+  rake
   rspec-rails
   sass-rails (~> 4.0.0.rc1)
   sdoc
