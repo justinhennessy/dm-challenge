@@ -37,6 +37,7 @@ class Challenge < ActiveRecord::Base
   private
 
   def user_activity_sum(user)
-    user.activities.where('date > "' + start_date.to_s + '" and date < "' + end_date.to_s + '"').sum(:value)
+    user.activities.where('date > "' + start_date.to_s + '" and date < "'\
+      + end_date.to_s + '"').sum(:value)
   end
 end
