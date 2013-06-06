@@ -13,6 +13,12 @@ group :test, :development do
   gem "capybara"
   gem "rake"
   gem "travis-lint"
+
+  gem 'simplecov', :require => false
+
+  if RUBY_VERSION >= '1.9'
+    gem 'coveralls', :require => false
+  end
 end
 
 group :production do
@@ -20,9 +26,6 @@ group :production do
 end
 
 gem 'activesupport'
-
-gem 'coveralls', require: false
-gem 'simplecov'
 
 gem 'twitter-bootstrap-rails'
 
