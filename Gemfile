@@ -13,6 +13,7 @@ group :test, :development do
   gem "capybara"
   gem "rake"
   gem "travis-lint"
+  gem 'cane_extensions', github: 'everydayhero/cane_extensions'
 
   gem 'simplecov', :require => false
 

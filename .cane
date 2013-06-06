@@ -1,0 +1,3 @@
+--no-doc
+--no-abc
+--style-glob {app,lib,test}/**/*.rb
