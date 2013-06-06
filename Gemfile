@@ -22,6 +22,7 @@ end
 gem 'activesupport'
 
 gem 'coveralls', require: false
+gem 'simplecov'
 
 gem 'twitter-bootstrap-rails'
 

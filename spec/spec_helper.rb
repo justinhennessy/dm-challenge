@@ -1,8 +1,17 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
-if ENV['COVERALLS_REPO_TOKEN']
+require 'simplecov'
+
+if RUBY_VERSION >= '1.9'
   require 'coveralls'
-  Coveralls.wear! 'rails'
+  SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
+    SimpleCov::Formatter::HTMLFormatter,
+    Coveralls::SimpleCov::Formatter
+  ]
+else
+  SimpleCov.formatter = SimpleCov::Formatter::HTMLFormatter
 end
+
+SimpleCov.start
 
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
