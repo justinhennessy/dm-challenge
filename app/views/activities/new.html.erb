@@ -1,6 +1,6 @@
 <h1>New Activity</h1>
 <%= form_for([@user, @activity]) do |f| %>
-<%=  render "shared/errors", object: @movie %>
+
   <fieldset>
     <ol>
       <li class="required">
@@ -14,7 +14,7 @@
     </ol>
     <p>
       <%= f.submit %>
-      <%= link_to "Cancel", movies_path, class: 'button' %>
+      <%= link_to "Cancel", user_activities_path(@user), class: 'button' %>
     </p>
   </fieldset>
 <% end %>
