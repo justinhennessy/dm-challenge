@@ -17,8 +17,8 @@ describe "Viewing the dashboard" do
 
     expect(page).to have_text(user1.preferred_name)
     expect(page).to have_text(user2.preferred_name)
-    expect(page).to have_text(user1.activity_total)
-    expect(page).to have_text(user2.activity_total)
+    expect(page).to have_text(user1.sum_of_activities_for(challenge))
+    expect(page).to have_text(user2.sum_of_activities_for(challenge))
     expect(page).to have_text(user1.percent_completed)
     expect(page).to have_text(user2.percent_completed)
   end
