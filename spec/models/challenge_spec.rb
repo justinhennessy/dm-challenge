@@ -7,10 +7,11 @@ describe "A challenge" do
     user2     = create_user challenge: challenge, commitment: 500
     create_activity user: user1, value: 100, date: 2.days.ago
     create_activity user: user1, value: 5, date: 1.day.ago
+    create_activity user: user1, value: 1000, date: 30.day.ago
     create_activity user: user2, value: 50, date: 2.days.ago
     create_activity user: user2, value: 200, date: 1.day.ago
 
-    expect(challenge.user_with_yellow_jersey).to eq(user2)
+    expect(challenge.user_with_highest_kilometers).to eq(user2)
   end
 
   it "can show the total commitment/target of its participants" do
@@ -68,7 +69,7 @@ describe "A challenge" do
   end
 
   it "can show the team total accumulated to date" do
-    challenge = create_challenge start_date: 10.days.from_now, end_date: 21.days.from_now
+    challenge = create_challenge start_date: 10.days.ago, end_date: 21.days.from_now
     user1     = create_user challenge: challenge, commitment: 1000
     user2     = create_user challenge: challenge, commitment: 500
     create_activity user: user1, value: 5, date: 1.days.ago
