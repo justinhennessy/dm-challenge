@@ -1,4 +1,3 @@
-
 # DMChallenge
 
 DMChallenge is for passionate cyclists that are after a tool to help a team
