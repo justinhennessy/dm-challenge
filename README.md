@@ -1,5 +1,4 @@
-
-# DMChallenge
+# DMChallenge ![](https://api.travis-ci.org/justinhennessy/dm-challenge.png)
 
 DMChallenge is for passionate cyclists that are after a tool to help a team
 to achieve a common goal that each member commit to.
