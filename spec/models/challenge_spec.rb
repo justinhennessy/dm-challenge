@@ -77,16 +77,4 @@ describe "A challenge" do
 
     expect(challenge.accumulated_total).to eq(205)
   end
-
-  def create_challenge attributes = {}
-    FactoryGirl.create :challenge, attributes
-  end
-
-  def create_user attributes = {}
-    FactoryGirl.create :user, attributes
-  end
-
-  def create_activity attributes = {}
-    FactoryGirl.create :activity, attributes
-  end
 end

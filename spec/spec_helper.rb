@@ -1,4 +1,18 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
+require 'simplecov'
+
+if RUBY_VERSION >= '1.9'
+  require 'coveralls'
+  SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
+    SimpleCov::Formatter::HTMLFormatter,
+    Coveralls::SimpleCov::Formatter
+  ]
+else
+  SimpleCov.formatter = SimpleCov::Formatter::HTMLFormatter
+end
+
+SimpleCov.start
+
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
@@ -39,4 +53,16 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = "random"
+
+  def create_challenge attributes = {}
+    FactoryGirl.create :challenge, attributes
+  end
+
+  def create_user attributes = {}
+    FactoryGirl.create :user, attributes
+  end
+
+  def create_activity attributes = {}
+    FactoryGirl.create :activity, attributes
+  end
 end

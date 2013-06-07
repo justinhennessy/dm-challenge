@@ -8,13 +8,25 @@ group :test, :development do
   gem 'factory_girl_rails'
   gem 'ffaker'
   gem 'localtunnel'
-  gem 'sqlite3'
+  gem "sqlite3", :platform => [:ruby, :mswin, :mingw]
   gem "rspec-rails"
+  gem "capybara"
+  gem "rake"
+  gem "travis-lint"
+  gem 'cane_extensions', github: 'everydayhero/cane_extensions'
+
+  gem 'simplecov', :require => false
+
+  if RUBY_VERSION >= '1.9'
+    gem 'coveralls', :require => false
+  end
 end
 
 group :production do
   gem 'pg'
 end
+
+gem 'activesupport'
 
 gem 'twitter-bootstrap-rails'
 
@@ -43,12 +55,6 @@ group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
 end
-
-group :test do
-  gem "capybara"
-end
-
-gem 'activesupport'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

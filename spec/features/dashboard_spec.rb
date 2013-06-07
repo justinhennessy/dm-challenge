@@ -4,6 +4,8 @@ describe "Viewing the dashboard" do
 
   it "shows a yellow jersey on the individual with the most kms"
 
+  it "shows a summary page for the challenge when it is closed"
+
   it "shows a list of team members and their stats" do
     challenge = create_challenge start_date: 10.days.ago, end_date: 21.days.from_now
     user1     = create_user challenge: challenge, commitment: 1000
@@ -111,17 +113,5 @@ describe "Viewing the dashboard" do
     expect(page).to have_text(user1.activities.first.date)
     expect(page).to have_text(user1.activities.last.value)
     expect(page).to have_text(user1.activities.last.date)
-  end
-
-  def create_challenge attributes = {}
-    FactoryGirl.create :challenge, attributes
-  end
-
-  def create_user attributes = {}
-    FactoryGirl.create :user, attributes
-  end
-
-  def create_activity attributes = {}
-    FactoryGirl.create :activity, attributes
   end
 end
