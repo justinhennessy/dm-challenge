@@ -1,4 +1,4 @@
-# DMChallenge
+# DMChallenge [![Build Status](https://travis-ci.org/justinhennessy/dm-challenge.png)](https://travis-ci.org/justinhennessy/dm-challenge) ![](https://coveralls.io/repos/justinhennessy/dm-challenge/badge.png?branch=master)
 
 DMChallenge is for passionate cyclists that are after a tool to help a team
 to achieve a common goal that each member commit to.
