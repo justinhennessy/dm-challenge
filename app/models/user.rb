@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
     start_date = challenge.start_date
     end_date   = challenge.end_date
 
-    activities.where('date > "' + start_date.to_s + '" and date < "'\
+    activities.where('date >= "' + start_date.to_s + '" and date <= "'\
       + end_date.to_s + '"').sum(:value)
   end
 
@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
     start_date = challenge.start_date
     end_date   = challenge.end_date
 
-    activities.where('date > "' + start_date.to_s + '" and date < "'\
+    activities.where('date >= "' + start_date.to_s + '" and date <= "'\
       + end_date.to_s + '"')
   end
 
