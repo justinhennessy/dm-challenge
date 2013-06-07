@@ -14,16 +14,4 @@ describe "Viewing a users activity list" do
 
     expect(current_path).to eq(new_user_activity_path(user))
   end
-
-  def create_challenge attributes = {}
-    FactoryGirl.create :challenge, attributes
-  end
-
-  def create_user attributes = {}
-    FactoryGirl.create :user, attributes
-  end
-
-  def create_activity attributes = {}
-    FactoryGirl.create :activity, attributes
-  end
 end

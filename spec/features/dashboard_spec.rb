@@ -114,16 +114,4 @@ describe "Viewing the dashboard" do
     expect(page).to have_text(user1.activities.last.value)
     expect(page).to have_text(user1.activities.last.date)
   end
-
-  def create_challenge attributes = {}
-    FactoryGirl.create :challenge, attributes
-  end
-
-  def create_user attributes = {}
-    FactoryGirl.create :user, attributes
-  end
-
-  def create_activity attributes = {}
-    FactoryGirl.create :activity, attributes
-  end
 end

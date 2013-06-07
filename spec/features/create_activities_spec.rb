@@ -16,16 +16,4 @@ describe "Creating a new activity" do
     expect(page).to have_text('31')
     expect(page).to have_text('Activity successfully created!')
   end
-
-  def create_challenge attributes = {}
-    FactoryGirl.create :challenge, attributes
-  end
-
-  def create_user attributes = {}
-    FactoryGirl.create :user, attributes
-  end
-
-  def create_activity attributes = {}
-    FactoryGirl.create :activity, attributes
-  end
 end
