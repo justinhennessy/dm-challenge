@@ -26,6 +26,8 @@ group :production do
   gem 'pg'
 end
 
+gem 'newrelic_rpm'
+
 gem 'activesupport'
 
 gem 'twitter-bootstrap-rails'
