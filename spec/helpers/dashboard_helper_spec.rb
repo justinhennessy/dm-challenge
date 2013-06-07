@@ -46,16 +46,4 @@ describe DashboardHelper do
     assign(:challenge, challenge)
     helper.style_challenge.should include("btn-primary")
   end
-
-  def create_challenge attributes = {}
-    FactoryGirl.create :challenge, attributes
-  end
-
-  def create_user attributes = {}
-    FactoryGirl.create :user, attributes
-  end
-
-  def create_activity attributes = {}
-    FactoryGirl.create :activity, attributes
-  end
 end
