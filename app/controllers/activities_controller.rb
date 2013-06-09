@@ -1,7 +1,7 @@
 class ActivitiesController < ApplicationController
   def index
+    @challenge  = Challenge.first
     @user       = User.find(params[:user_id])
-    @challenge  = Challenge.find(@user)
     @activities = @user.activities_for(@challenge)
   end
 
@@ -18,6 +18,21 @@ class ActivitiesController < ApplicationController
         notice: "Activity successfully created!"
     else
       render :new
+    end
+  end
+
+  def edit
+    @user = User.find(params[:user_id])
+    @activity = @user.activities.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:user_id])
+    @activity = Activity.find(params[:id])
+    if @activity.update(activity_params)
+      redirect_to user_activities_path(@user), notice: "Activity successfully updated!"
+    else
+      render :edit
     end
   end
 
