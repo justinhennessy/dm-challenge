@@ -30,7 +30,8 @@ class ActivitiesController < ApplicationController
     @user = User.find(params[:user_id])
     @activity = Activity.find(params[:id])
     if @activity.update(activity_params)
-      redirect_to user_activities_path(@user), notice: "Activity successfully updated!"
+      redirect_to user_activities_path(@user),\
+        notice: "Activity successfully updated!"
     else
       render :edit
     end

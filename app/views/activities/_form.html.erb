@@ -1,4 +1,5 @@
 <%= form_for([@user, @activity]) do |f| %>
+  <%=  render "shared/errors", object: @activity %>
   <fieldset>
     <div class="row">
       <div class="span3 required">
