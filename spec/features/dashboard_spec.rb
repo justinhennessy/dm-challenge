@@ -2,12 +2,28 @@ require 'spec_helper'
 
 describe "Viewing the dashboard" do
 
-  it "shows a yellow jersey on the individual with the most kms"
+  it "shows a yellow jersey on the individual with the most kms" do
+    challenge = create_challenge start_date: 10.days.ago,\
+      end_date: 21.days.from_now
+    user1     = create_user challenge: challenge, commitment: 1000
+    user2     = create_user challenge: challenge, commitment: 500
+    create_activity user: user1, value: 100, date: 2.days.ago
+    create_activity user: user1, value: 5, date: 1.day.ago
+    create_activity user: user2, value: 50, date: 2.days.ago
+    create_activity user: user2, value: 200, date: 1.day.ago
+
+    visit dashboard_path
+
+    # TODO: need to find out how to check that this is next to the person
+    # with the most kms
+    expect(page).to have_selector("img[src$='yellow_jersey_small.png']")
+  end
 
   it "shows a summary page for the challenge when it is closed"
 
   it "shows a list of team members and their stats" do
-    challenge = create_challenge start_date: 10.days.ago, end_date: 21.days.from_now
+    challenge = create_challenge start_date: 10.days.ago,\
+      end_date: 21.days.from_now
     user1     = create_user challenge: challenge, commitment: 1000
     user2     = create_user challenge: challenge, commitment: 500
     create_activity user: user1, value: 100, date: 2.days.ago
@@ -34,7 +50,8 @@ describe "Viewing the dashboard" do
   end
 
   it "shows the number of days left in a challenge once it has started" do
-    challenge = create_challenge start_date: 10.days.ago, end_date: 21.days.from_now
+    challenge = create_challenge start_date: 10.days.ago,\
+      end_date: 21.days.from_now
 
     visit dashboard_path
 
@@ -52,7 +69,8 @@ describe "Viewing the dashboard" do
   end
 
   it "shows the teams accumulative total to date" do
-    challenge = create_challenge start_date: 10.days.ago, end_date: 21.days.from_now
+    challenge = create_challenge start_date: 10.days.ago,\
+      end_date: 21.days.from_now
     user1     = create_user challenge: challenge, commitment: 1000
     user2     = create_user challenge: challenge, commitment: 500
     create_activity user: user1, value: 100, date: 2.days.ago
@@ -66,7 +84,8 @@ describe "Viewing the dashboard" do
   end
 
   it "shows the accumulative total needed to hit challenge target to date" do
-    challenge = create_challenge start_date: 10.days.ago, end_date: 21.days.from_now
+    challenge = create_challenge start_date: 10.days.ago,\
+      end_date: 21.days.from_now
     user1     = create_user challenge: challenge, commitment: 1000
     user2     = create_user challenge: challenge, commitment: 500
 
@@ -75,8 +94,9 @@ describe "Viewing the dashboard" do
     expect(page).to have_text("480 Needed")
   end
 
-  it "shows the teams deficit, the difference between actual and daily target" do
-    challenge = create_challenge start_date: 10.days.ago, end_date: 21.days.from_now
+  it "shows the deficit, the difference between actual and daily target" do
+    challenge = create_challenge start_date: 10.days.ago,\
+      end_date: 21.days.from_now
     user1     = create_user challenge: challenge, commitment: 2000
     user2     = create_user challenge: challenge, commitment: 1500
     create_activity user: user1, value: 100, date: 2.days.ago
@@ -97,8 +117,10 @@ describe "Viewing the dashboard" do
     expect(page).to have_text(user1.nickname)
   end
 
-  it "shows a link that a user can click to see a list of their activities for the current challenge" do
-    challenge = create_challenge start_date: 10.days.ago, end_date: 21.days.from_now
+  it "shows a link that a user can click to see a list of their\
+      activities for the current challenge" do
+    challenge = create_challenge start_date: 10.days.ago,\
+      end_date: 21.days.from_now
     user1     = create_user challenge: challenge, commitment: 2000
     user2     = create_user challenge: challenge, commitment: 1500
     create_activity user: user1, value: 100, date: 2.days.ago
