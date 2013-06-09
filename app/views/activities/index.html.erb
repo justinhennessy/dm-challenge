@@ -17,7 +17,11 @@ There are currently no activities!
       <tr>
         <td><%= activity.date %></td>
         <td><%= activity.value %></td>
-        <td><%= link_to 'Edit', edit_user_activity_path(@user, activity) %></td>
+        <td><%= link_to 'Edit', edit_user_activity_path(@user, activity) %>
+            <%= link_to 'Delete', user_activity_path(@user, activity),
+                class: 'button',
+                method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
       </tr>
     <%end%>
   </tbody>

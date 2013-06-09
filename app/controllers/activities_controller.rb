@@ -37,6 +37,14 @@ class ActivitiesController < ApplicationController
     end
   end
 
+  def destroy
+    @user = User.find(params[:user_id])
+    @activity = Activity.find(params[:id])
+    @activity.destroy!
+    redirect_to user_activities_path(@user),\
+      alert: "Activity successfully deleted!"
+  end
+
     private
 
     def activity_params
