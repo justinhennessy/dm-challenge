@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe "A user" do
+  it "must have a commitment set"
+
   it "can show sum of activities within a date range" do
     challenge = create_challenge start_date: 5.days.ago, end_date:\
       10.days.from_now
