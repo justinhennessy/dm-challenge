@@ -1,7 +1,33 @@
 require 'spec_helper'
 
 describe "A user" do
-  it "must have a commitment set"
+  it "must not have a blank name" do
+    user = User.new(commitment: 1000)
+
+    expect(user.valid?).to be_false
+    expect(user.errors[:name].first).to eq("can't be blank")
+  end
+
+  it "must not have a 0 commitment" do
+    user = User.new(name: "Joe", commitment: 0)
+
+    expect(user.valid?).to be_false
+    expect(user.errors[:commitment].first).to eq("must be greater than 0")
+  end
+
+  it "can't have a blank commitment" do
+    user = User.new(name: "Joe")
+
+    expect(user.valid?).to be_false
+    expect(user.errors[:commitment].first).to eq("can't be blank")
+  end
+
+  it "name can't be blank" do
+    user = User.new(commitment: 100)
+
+    expect(user.valid?).to be_false
+    expect(user.errors[:name].first).to eq("can't be blank")
+  end
 
   it "can show sum of activities within a date range" do
     challenge = create_challenge start_date: 5.days.ago, end_date:\
@@ -18,7 +44,7 @@ describe "A user" do
   it "can show a sum of activities with one on the first day of the challenge" do
     challenge = create_challenge start_date: 5.days.ago,\
       end_date: 10.days.from_now
-    user      = create_user challenge: challenge
+    user      = create_user challenge: challenge, commitment: 500
     create_activity user: user, value: 100, date: 6.days.ago
     create_activity user: user, value: 100, date: 5.days.ago
     create_activity user: user, value: 100, date: 4.days.ago

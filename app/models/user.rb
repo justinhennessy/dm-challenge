@@ -2,6 +2,9 @@ class User < ActiveRecord::Base
   belongs_to :challenge
   has_many :activities
 
+  validates :commitment, presence: true, :numericality => { greater_than: 0 }
+  validates :name, presence: true
+
   def sum_of_activities_for(challenge)
     start_date = challenge.start_date
     end_date   = challenge.end_date
