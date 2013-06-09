@@ -9,6 +9,7 @@ There are currently no activities!
     <tr>
       <th>Date</th>
       <th>KMS</th>
+      <th>Action</th>
     </tr>
   </thead>
   <tbody>
@@ -16,6 +17,7 @@ There are currently no activities!
       <tr>
         <td><%= activity.date %></td>
         <td><%= activity.value %></td>
+        <td><%= link_to 'Edit', edit_user_activity_path(@user, activity) %></td>
       </tr>
     <%end%>
   </tbody>
