@@ -42,20 +42,20 @@ describe "Viewing the dashboard" do
   end
 
   it "shows the number of days until the challenge starts" do
-    create_challenge start_date: 12.days.from_now, end_date: 30.days.from_now
+    create_challenge start_date: 12.days.from_now.utc, end_date: 30.days.from_now.utc
 
     visit dashboard_path
 
-    expect(page).to have_text("13 days to start!")
+    expect(page).to have_text("12 days to start!")
   end
 
   it "shows the number of days left in a challenge once it has started" do
-    challenge = create_challenge start_date: 10.days.ago,\
-      end_date: 21.days.from_now
+    challenge = create_challenge start_date: 10.days.ago.utc,\
+      end_date: 21.days.from_now.utc
 
     visit dashboard_path
 
-    expect(page).to have_text("22 days left!")
+    expect(page).to have_text("21 days left!")
   end
 
   it "shows the teams target for the current challenge" do
