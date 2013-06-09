@@ -12,7 +12,6 @@ describe "Creating a new activity" do
     click_button 'Create Activity'
 
     expect(current_path).to eq(user_activities_path(user))
-
     expect(page).to have_text('31')
     expect(page).to have_text('Activity successfully created!')
   end
