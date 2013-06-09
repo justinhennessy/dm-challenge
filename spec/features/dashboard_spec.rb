@@ -42,7 +42,8 @@ describe "Viewing the dashboard" do
   end
 
   it "shows the number of days until the challenge starts" do
-    create_challenge start_date: 12.days.from_now.utc, end_date: 30.days.from_now.utc
+    create_challenge start_date: 12.days.from_now.utc,\
+      end_date: 30.days.from_now.utc
 
     visit dashboard_path
 

@@ -41,7 +41,8 @@ describe "A user" do
     expect(user.sum_of_activities_for(challenge)).to eq(300)
   end
 
-  it "can show a sum of activities with one on the first day of the challenge" do
+  it "can show a sum of activities with one on the first day of the\
+    challenge" do
     challenge = create_challenge start_date: 5.days.ago,\
       end_date: 10.days.from_now
     user      = create_user challenge: challenge, commitment: 500
@@ -52,7 +53,8 @@ describe "A user" do
     expect(user.sum_of_activities_for(challenge)).to eq(200)
   end
 
-  it "can show a sum of activities with one on the last day of the challenge" do
+  it "can show a sum of activities with one on the last day of the\
+    challenge" do
     challenge = create_challenge start_date: 5.days.ago,\
       end_date: 10.days.from_now
     user      = create_user challenge: challenge

@@ -2,14 +2,16 @@ require 'spec_helper'
 
 describe DashboardHelper do
   it "display the number of days left if in the middle of a challenge" do
-    challenge = OpenStruct.new start_date: 10.days.ago, end_date: 21.days.from_now
+    challenge = OpenStruct.new start_date: 10.days.ago,\
+      end_date: 21.days.from_now
 
     assign(:challenge, challenge)
     helper.challenge_countdown.should include("22 days left!")
   end
 
   it "display the number of days until a chanllenge starts" do
-    challenge = OpenStruct.new start_date: 10.days.from_now, end_date: 21.days.from_now
+    challenge = OpenStruct.new start_date: 10.days.from_now,\
+      end_date: 21.days.from_now
 
     assign(:challenge, challenge)
     helper.challenge_countdown.should include("11 days to start!")
