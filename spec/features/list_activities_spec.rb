@@ -13,7 +13,8 @@ describe "Viewing a users activity list" do
 
    click_link 'Edit'
 
-    expect(current_path).to have_content(edit_user_activity_path(user, activity1))
+    expect(current_path).to\
+      have_content(edit_user_activity_path(user, activity1))
   end
 
   it "shows the list of activities for the current challenge" do
