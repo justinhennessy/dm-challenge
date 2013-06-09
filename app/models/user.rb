@@ -6,16 +6,16 @@ class User < ActiveRecord::Base
     start_date = challenge.start_date
     end_date   = challenge.end_date
 
-    activities.where('date >= "' + start_date.to_s + '" and date <= "'\
-      + end_date.to_s + '"').sum(:value)
+    activities.where("date >= '" + start_date.to_s + "' and date <= '"\
+      + end_date.to_s + "'").sum(:value)
   end
 
   def activities_for(challenge)
     start_date = challenge.start_date
     end_date   = challenge.end_date
 
-    activities.where('date >= "' + start_date.to_s + '" and date <= "'\
-      + end_date.to_s + '"')
+    activities.where("date >= '" + start_date.to_s + "' and date <= '"\
+      + end_date.to_s + "'")
   end
 
   def percent_completed
