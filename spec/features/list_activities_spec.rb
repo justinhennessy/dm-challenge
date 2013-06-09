@@ -1,6 +1,9 @@
 require 'spec_helper'
 
 describe "Viewing a users activity list" do
+  it "shows a link to edit each activity" do
+
+  end
 
   it "shows the list of activities for the current challenge" do
     challenge = create_challenge start_date: 10.days.ago, end_date: 21.days.from_now
