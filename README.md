@@ -8,10 +8,10 @@ to achieve a common goal that each member commit to.
 
 ## TODO
 
-- [x] Implement OAuth developer strategy for first attempt at login
-- [ ] Implement login with Facebook
-- [ ] Change dashboard to be user specific
-- [ ] Implement login with Strava
+- Implement OAuth developer strategy for first attempt at login
+- Implement login with Facebook
+- Change dashboard to be user specific
+- Implement login with Strava
 
 ## Required Environment
 
