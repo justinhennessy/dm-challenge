@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   belongs_to :challenge
   has_many :activities
 
-  validates :commitment, presence: true, :numericality => { greater_than: 0 }
+  #validates :commitment, presence: true, :numericality => { greater_than: 0 }
   validates :name, presence: true
 
   def sum_of_activities_for(challenge)
