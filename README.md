@@ -8,10 +8,10 @@ to achieve a common goal that each member commits to.
 
 ## TODO
 
-- Implement OAuth developer strategy for first attempt at login
-- Implement login with Facebook
-- Change dashboard to be user specific
-- Implement login with Strava
+- [ ] Implement login with Facebook
+- [ ] Change dashboard to be user secured for specific
+- [ ] Implement login with Strava
+- [ ] Implement downloading of users activities
 
 ## Required Environment
 
