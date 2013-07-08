@@ -9,7 +9,7 @@ to achieve a common goal that each member commits to.
 ## TODO
 
 - Implement login with Facebook (done)
-- Change dashboard to be user secured for specific
+- Implement security for user views
 - Implement login with Strava
 - Implement downloading of users activities
 
