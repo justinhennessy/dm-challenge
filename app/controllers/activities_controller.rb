@@ -1,4 +1,6 @@
 class ActivitiesController < ApplicationController
+  before_filter :authorize
+
   def index
     @challenge  = Challenge.first
     @user       = User.find(params[:user_id])
