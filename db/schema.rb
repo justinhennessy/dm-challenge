@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130521141352) do
+ActiveRecord::Schema.define(version: 20130628094234) do
 
   create_table "activities", force: true do |t|
     t.date     "date"
@@ -22,6 +22,17 @@ ActiveRecord::Schema.define(version: 20130521141352) do
   end
 
   add_index "activities", ["user_id"], name: "index_activities_on_user_id"
+
+  create_table "authorizations", force: true do |t|
+    t.string   "provider"
+    t.string   "uid"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
+    t.string   "oauth_token"
+    t.datetime "oauth_expires_at"
+  end
 
   create_table "challenges", force: true do |t|
     t.string   "name"
@@ -40,6 +51,10 @@ ActiveRecord::Schema.define(version: 20130521141352) do
     t.datetime "updated_at"
     t.integer  "challenge_id"
     t.string   "nickname"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "oauth_token"
+    t.datetime "oauth_expires_at"
   end
 
 end

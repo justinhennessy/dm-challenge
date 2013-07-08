@@ -27,6 +27,8 @@ group :production do
   gem 'thin'
 end
 
+gem 'omniauth-facebook'
+
 gem 'newrelic_rpm'
 
 gem 'activesupport'
