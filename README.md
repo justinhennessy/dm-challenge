@@ -3,8 +3,8 @@
 ![](https://coveralls.io/repos/justinhennessy/dm-challenge/badge.png?branch=master)
 ![](https://codeclimate.com/github/justinhennessy/dm-challenge.png)
 
-DMChallenge is for passionate cyclists that are after a tool to help a team
-to achieve a common goal that each member commit to.
+DMChallenge is for passionate cyclists that are after a tool to help their team
+to achieve a common goal that each member commits to.
 
 ## TODO
 
