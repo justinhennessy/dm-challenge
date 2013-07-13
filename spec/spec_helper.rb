@@ -65,4 +65,21 @@ RSpec.configure do |config|
   def create_activity attributes = {}
     FactoryGirl.create :activity, attributes
   end
+
+  def sign_in_as user
+    OmniAuth.config.test_mode = true
+      OmniAuth.config.mock_auth[:facebook] = OmniAuth::AuthHash.new({
+    :provider => 'facebook',
+    :info => {
+      :name => "Mr Foo",
+    },
+    :credentials => {
+      :token => "token",
+      :expires_at => 1.day.from_now,
+    },
+    :uid => 'mrfoo'
+  })
+
+    visit "/auth/facebook"
+  end
 end

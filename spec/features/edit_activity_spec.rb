@@ -1,17 +1,21 @@
 require 'spec_helper'
 
 describe "Editing an activity" do
-  it "updates the activity then shows the activity list" do
-    user      = create_user
-    activity  = create_activity user: user, value: 104, date: 4.days.ago
+  before(:each) do
+    @user = create_user
+    sign_in_as @user
+  end
 
-    visit edit_user_activity_path(user, activity)
+  it "updates the activity then shows the activity list" do
+    activity  = create_activity user: @user, value: 104, date: 4.days.ago
+
+    visit edit_user_activity_path(@user, activity)
 
     fill_in "Value", with: 31
 
     click_button 'Update Activity'
 
-    expect(current_path).to eq(user_activities_path(user))
+    expect(current_path).to eq(user_activities_path(@user))
     expect(page).to have_text('31')
     expect(page).to have_text('Activity successfully updated!')
   end
