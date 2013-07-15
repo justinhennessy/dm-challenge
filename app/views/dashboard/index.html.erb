@@ -47,7 +47,7 @@
           <tbody>
             <% @challenge.users.each do |user| %>
             <tr>
-              <td><%= link_to user.preferred_name, user_activities_path(user) %>
+              <td><%= link_to_if current_user == user, user.preferred_name, user_activities_path(user) %>
                 <%= image_tag 'yellow_jersey_small.png'\
                 if user == @challenge.user_with_highest_kilometers %></td>
               <td><%= user.sum_of_activities_for(@challenge) %></td>
