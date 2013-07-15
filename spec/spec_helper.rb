@@ -75,7 +75,7 @@ RSpec.configure do |config|
     },
     :credentials => {
       :token => "token",
-      :expires_at => '2020-01-01',
+      :expires_at => '2020-01-01'.to_i,
     },
     :uid => 'mrfoo'
   })
