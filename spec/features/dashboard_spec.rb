@@ -61,9 +61,6 @@ describe "Viewing the dashboard" do
     end
 
     it "shows the teams accumulative total to date" do
-      # challenge = create_challenge start_date: 10.days.ago,\
-      #   end_date: 21.days.from_now
-
       visit dashboard_path
 
       expect(page).to have_text("355 Team Total")
@@ -79,6 +76,21 @@ describe "Viewing the dashboard" do
       visit dashboard_path
 
       expect(page).to have_text("125 Deficit")
+    end
+
+    it "shows a link that a user can click to see a list of their activities for the current challenge"
+
+    context "with a nickname" do
+      let(:user) {
+        create_user challenge: challenge, commitment: commitment,
+          nickname: "Drill Sergeant"
+      }
+
+      it "shows a users prefered name in place of name" do
+        visit dashboard_path
+
+        expect(page).to have_text(user.nickname)
+      end
     end
   end
 
@@ -96,37 +108,4 @@ describe "Viewing the dashboard" do
       expect(page).to have_text("12 days to start!")
     end
   end
-
-
-
-
-
-
-
-  # it "shows a users prefered name in place of name" do
-  #   user1 = create_user nickname: "Drill Sergeant"
-
-  #   visit dashboard_path
-
-  #   expect(page).to have_text(user1.nickname)
-  # end
-
-  # it "shows a link that a user can click to see a list of their activities for the current challenge" do
-  #   challenge = create_challenge start_date: 10.days.ago,\
-  #     end_date: 21.days.from_now
-  #   user1     = create_user challenge: challenge, commitment: 2000
-  #   user2     = create_user challenge: challenge, commitment: 1500
-  #   create_activity user: user1, value: 100, date: 2.days.ago
-  #   create_activity user: user1, value: 5, date: 1.day.ago
-
-  #   visit dashboard_path
-  #   click_link user1.preferred_name
-
-  #   expect(current_path).to eq(user_activities_path(user1))
-  #   expect(page).to have_text(user1.preferred_name)
-  #   expect(page).to have_text(user1.activities.first.value)
-  #   expect(page).to have_text(user1.activities.first.date)
-  #   expect(page).to have_text(user1.activities.last.value)
-  #   expect(page).to have_text(user1.activities.last.date)
-  # end
 end
