@@ -58,6 +58,7 @@ GEM
       simplecov (>= 0.7)
       thor
     daemons (1.1.9)
+    database_cleaner (1.0.1)
     diff-lcs (1.2.4)
     erubis (2.7.0)
     eventmachine (1.0.3)
@@ -208,6 +209,7 @@ DEPENDENCIES
   capybara
   coffee-rails (~> 4.0.0)
   coveralls
+  database_cleaner
   factory_girl_rails
   ffaker
   jbuilder (~> 1.0.1)
