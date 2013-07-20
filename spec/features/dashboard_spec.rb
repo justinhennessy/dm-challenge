@@ -69,7 +69,7 @@ describe "Viewing the dashboard" do
     it "shows the accumulative total needed to hit challenge target to date" do
       visit dashboard_path
 
-      expect(page).to have_text("480 Needed")
+      expect(page).to have_text("480 Total needed to date")
     end
 
     it "shows the deficit, the difference between actual and daily target" do

@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
   end
 
   def percent_completed
-    ((sum_of_activities_for(challenge).to_f / commitment) * 100).to_i
+    commitment ? ((sum_of_activities_for(challenge).to_f / commitment) * 100).to_i : 0
   end
 
   def preferred_name
@@ -41,7 +41,7 @@ class User < ActiveRecord::Base
       user.oauth_token = auth.credentials.token
       user.oauth_expires_at = Time.at(auth.credentials.expires_at)
       user.challenge = Challenge.first
-      user.commitment = 500
+      #user.commitment = 500
       user.save!
     end
   end
