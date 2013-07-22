@@ -107,5 +107,11 @@ describe "Viewing the dashboard" do
 
       expect(page).to have_text("13 days to start!")
     end
+
+    it "shows 0 Team needed to date if the challenge hasn't started" do
+      visit dashboard_path
+
+      expect(page).to have_text("0 Total needed to date")
+    end
   end
 end
