@@ -34,6 +34,7 @@ describe "Viewing the dashboard" do
 
       # TODO: need to find out how to check that this is next to the person
       # with the most kms
+      #expect(page.find("tr." + user2.id.to_s + " td:first")).to have("img[src$='yellow_jersey_small.png']")
       expect(page).to have_selector("img[src$='yellow_jersey_small.png']")
     end
 
