@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-DmChallenge::Application.config.secret_key_base = '4519a9a3ac4ce1713194e3dddd0a601e7aeae5de69d267821e7ec58824b204039fe3ecbdc991be9030337bf393aefb7268701af148a51e903a111c44f7f91b5c'
+DmChallenge::Application.config.secret_key_base = ENV['SECRET_TOKEN']

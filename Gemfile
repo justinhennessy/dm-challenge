@@ -29,7 +29,7 @@ group :production do
 end
 
 gem 'omniauth-facebook'
-
+gem 'dotenv-rails', :groups => [:development, :test]
 gem 'newrelic_rpm'
 
 gem 'activesupport'
