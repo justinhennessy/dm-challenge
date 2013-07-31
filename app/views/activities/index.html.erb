@@ -1,4 +1,5 @@
 <h1><%= @user.preferred_name %>'s activities</h1>
+<small>Commitment <%= @user.commitment %></small><br><br>
 <%= link_to "Add", new_user_activity_path(@user), class: "btn btn-success" %>
 <% if @activities.count == 0 %>
 <br><br>
