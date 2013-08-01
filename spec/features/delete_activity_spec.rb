@@ -7,7 +7,7 @@ describe "Deleting an activity" do
   end
 
   it "deletes the selected activity then redirects to the activity list" do
-    create_activity user: @user, value: 104, date: 4.days.ago
+    create_activity user: @user, distance: 104, date: 4.days.ago
 
     visit user_activities_path(@user)
 
