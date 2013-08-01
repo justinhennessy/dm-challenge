@@ -19,7 +19,24 @@ describe "Creating a new activity" do
     expect(page).to have_text('Activity successfully created!')
   end
 
+<<<<<<< Updated upstream
   it "with a value = zero produces an error" do
+=======
+  it "saves the activity and shows the user activity list" do
+    visit new_user_activity_path(@user)
+
+    fill_in "Date", with: 1.days.ago
+    fill_in "Ascent", with: 390
+
+    click_button 'Create Activity'
+
+    expect(current_path).to eq(user_activities_path(@user))
+    expect(page).to have_text('390')
+    expect(page).to have_text('Activity successfully created!')
+  end
+
+  it "with a distance = zero produces an error" do
+>>>>>>> Stashed changes
     challenge = create_challenge start_date: 10.days.ago,\
       end_date: 21.days.from_now
     user      = create_user challenge: challenge
@@ -51,7 +68,11 @@ describe "Creating a new activity" do
     expect(page).to have_text('error')
   end
 
+<<<<<<< Updated upstream
   it "with a value = blank produces an error" do
+=======
+  it "with a distance = blank produces an error" do
+>>>>>>> Stashed changes
     challenge = create_challenge start_date: 10.days.ago,\
       end_date: 21.days.from_now
     user      = create_user challenge: challenge
