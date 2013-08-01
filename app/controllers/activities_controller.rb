@@ -50,6 +50,6 @@ class ActivitiesController < ApplicationController
     private
 
     def activity_params
-      params.require(:activity).permit(:date, :distance)
+      params.require(:activity).permit(:date, :distance, :ascent)
     end
 end

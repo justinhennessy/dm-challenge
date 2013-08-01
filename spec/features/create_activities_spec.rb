@@ -6,7 +6,7 @@ describe "Creating a new activity" do
     sign_in_as @user
   end
 
-  it "saves the activity and shows the user activity list" do
+  it "saves the activity with distance and shows the user activity list" do
     visit new_user_activity_path(@user)
 
     fill_in "Date", with: 1.days.ago
@@ -19,10 +19,11 @@ describe "Creating a new activity" do
     expect(page).to have_text('Activity successfully created!')
   end
 
-  it "saves the activity and shows the user activity list" do
+  it "saves the activity with ascent shows the user activity list" do
     visit new_user_activity_path(@user)
 
     fill_in "Date", with: 1.days.ago
+    fill_in "Distance", with: 31
     fill_in "Ascent", with: 390
 
     click_button 'Create Activity'
