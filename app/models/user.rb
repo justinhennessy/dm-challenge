@@ -5,12 +5,20 @@ class User < ActiveRecord::Base
   #validates :commitment, presence: true, :numericality => { greater_than: 0 }
   validates :name, presence: true
 
-  def sum_of_activities_for(challenge)
+  def sum_of_distance_for(challenge)
     start_date = challenge.start_date
     end_date   = challenge.end_date
 
     activities.where("date >= '" + start_date.to_s + "' and date <= '"\
       + end_date.to_s + "'").sum(:distance)
+  end
+
+  def sum_of_ascent_for(challenge)
+    start_date = challenge.start_date
+    end_date   = challenge.end_date
+
+    activities.where("date >= '" + start_date.to_s + "' and date <= '"\
+      + end_date.to_s + "'").sum(:ascent)
   end
 
   def activities_for(challenge)
@@ -22,7 +30,7 @@ class User < ActiveRecord::Base
   end
 
   def percent_completed
-    commitment ? ((sum_of_activities_for(challenge).to_f / commitment) * 100).to_i : 0
+    commitment ? ((sum_of_distance_for(challenge).to_f / commitment) * 100).to_i : 0
   end
 
   def preferred_name
