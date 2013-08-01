@@ -27,10 +27,10 @@ describe DashboardHelper do
     challenge = create_challenge
     user1     = create_user challenge: challenge, commitment: 100
     user2     = create_user challenge: challenge, commitment: 100
-    create_activity user: user1, value: 100, date: 2.days.ago
-    create_activity user: user1, value: 5, date: 1.day.ago
-    create_activity user: user2, value: 50, date: 2.days.ago
-    create_activity user: user2, value: 200, date: 1.day.ago
+    create_activity user: user1, distance: 100, date: 2.days.ago
+    create_activity user: user1, distance: 5, date: 1.day.ago
+    create_activity user: user2, distance: 50, date: 2.days.ago
+    create_activity user: user2, distance: 200, date: 1.day.ago
 
     assign(:challenge, challenge)
     helper.style_challenge.should include("btn-success")
@@ -40,10 +40,10 @@ describe DashboardHelper do
     challenge = create_challenge
     user1     = create_user challenge: challenge, commitment: 1000
     user2     = create_user challenge: challenge, commitment: 1000
-    create_activity user: user1, value: 100, date: 2.days.ago
-    create_activity user: user1, value: 5, date: 1.day.ago
-    create_activity user: user2, value: 50, date: 2.days.ago
-    create_activity user: user2, value: 200, date: 1.day.ago
+    create_activity user: user1, distance: 100, date: 2.days.ago
+    create_activity user: user1, distance: 5, date: 1.day.ago
+    create_activity user: user2, distance: 50, date: 2.days.ago
+    create_activity user: user2, distance: 200, date: 1.day.ago
 
     assign(:challenge, challenge)
     helper.style_challenge.should include("btn-primary")

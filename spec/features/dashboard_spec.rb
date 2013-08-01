@@ -22,10 +22,10 @@ describe "Viewing the dashboard" do
      }
 
     before(:each) do
-      create_activity user: user, value: 100, date: 2.days.ago
-      create_activity user: user, value: 5, date: 1.day.ago
-      create_activity user: user2, value: 50, date: 2.days.ago
-      create_activity user: user2, value: 200, date: 1.day.ago
+      create_activity user: user, distance: 100, date: 2.days.ago
+      create_activity user: user, distance: 5, date: 1.day.ago
+      create_activity user: user2, distance: 50, date: 2.days.ago
+      create_activity user: user2, distance: 200, date: 1.day.ago
     end
 
     it "shows a yellow jersey on the individual with the most kms" do

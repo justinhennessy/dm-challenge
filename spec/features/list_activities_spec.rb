@@ -12,7 +12,7 @@ describe "Viewing a users activity list" do
     challenge = create_challenge start_date: 10.days.ago,\
       end_date: 21.days.from_now
     @user.challenge = challenge
-    activity1 = create_activity user: @user, value: 104, date: 4.days.ago
+    activity1 = create_activity user: @user, distance: 104, date: 4.days.ago
 
     visit user_activities_path(@user)
 
@@ -26,8 +26,8 @@ describe "Viewing a users activity list" do
     challenge = create_challenge start_date: 10.days.ago,\
       end_date: 21.days.from_now
     @user.challenge = challenge
-    create_activity user: @user, value: 104, date: 4.days.ago
-    create_activity user: @user, value: 103, date: 3.day.ago
+    create_activity user: @user, distance: 104, date: 4.days.ago
+    create_activity user: @user, distance: 103, date: 3.day.ago
 
     visit user_activities_path(@user)
 
