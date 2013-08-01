@@ -24,8 +24,8 @@ describe "Viewing the dashboard" do
     before(:each) do
       create_activity user: user, distance: 100, ascent: 20, date: 2.days.ago
       create_activity user: user, distance: 5, ascent: 10, date: 1.day.ago
-      create_activity user: user2, distance: 50, date: 2.days.ago
-      create_activity user: user2, distance: 200, date: 1.day.ago
+      create_activity user: user2, distance: 50, ascent: 1, date: 2.days.ago
+      create_activity user: user2, distance: 200, ascent: 1, date: 1.day.ago
     end
 
     it "shows a yellow jersey on the individual with the most kms" do
@@ -36,6 +36,12 @@ describe "Viewing the dashboard" do
       # with the most kms
       #expect(page.find("tr." + user2.id.to_s + " td:first")).to have("img[src$='yellow_jersey_small.png']")
       expect(page).to have_selector("img[src$='yellow_jersey_small.png']")
+    end
+
+    it "shows a spotted jersey on the individual with the most meters ascented" do
+      visit dashboard_path
+
+      expect(page).to have_selector("img[src$='spotted_jersey_small.png']")
     end
 
     it "shows a list of team members and their stats" do

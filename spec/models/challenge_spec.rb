@@ -15,6 +15,20 @@ describe "A challenge" do
     expect(challenge.user_with_highest_kilometers).to eq(user2)
   end
 
+  it "can show who has the spotted jersey" do
+    challenge = create_challenge start_date: 10.days.ago,\
+      end_date: 21.days.from_now
+    user1     = create_user challenge: challenge, commitment: 1000
+    user2     = create_user challenge: challenge, commitment: 500
+    create_activity user: user1, distance: 100, date: 2.days.ago
+    create_activity user: user1, distance: 5, date: 1.day.ago
+    create_activity user: user1, distance: 1000, date: 30.day.ago
+    create_activity user: user2, distance: 50, ascent: 1000, date: 2.days.ago
+    create_activity user: user2, distance: 200, ascent: 1000,  date: 1.day.ago
+
+    expect(challenge.user_with_highest_ascent).to eq(user2)
+  end
+
   it "can show the total commitment/target of its participants" do
     challenge = create_challenge
     user1     = create_user challenge: challenge, commitment: 1000
