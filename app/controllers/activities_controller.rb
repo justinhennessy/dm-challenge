@@ -31,6 +31,7 @@ class ActivitiesController < ApplicationController
   def update
     @user = User.find(params[:user_id])
     @activity = Activity.find(params[:id])
+    raise
     if @activity.update(activity_params)
       redirect_to user_activities_path(@user),\
         notice: "Activity successfully updated!"
