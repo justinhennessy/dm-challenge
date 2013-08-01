@@ -22,8 +22,8 @@ describe "Viewing the dashboard" do
      }
 
     before(:each) do
-      create_activity user: user, distance: 100, date: 2.days.ago
-      create_activity user: user, distance: 5, date: 1.day.ago
+      create_activity user: user, distance: 100, ascent: 20, date: 2.days.ago
+      create_activity user: user, distance: 5, ascent: 10, date: 1.day.ago
       create_activity user: user2, distance: 50, date: 2.days.ago
       create_activity user: user2, distance: 200, date: 1.day.ago
     end
@@ -43,10 +43,16 @@ describe "Viewing the dashboard" do
 
       expect(page).to have_text(user.preferred_name)
       expect(page).to have_text(user2.preferred_name)
-      expect(page).to have_text(user.sum_of_activities_for(challenge))
-      expect(page).to have_text(user2.sum_of_activities_for(challenge))
+      expect(page).to have_text(user.sum_of_distance_for(challenge))
+      expect(page).to have_text(user2.sum_of_distance_for(challenge))
       expect(page).to have_text(user.percent_completed)
       expect(page).to have_text(user2.percent_completed)
+    end
+
+    it "shows a sum of meters ascented" do
+      visit dashboard_path
+
+      expect(page).to have_text(user.sum_of_ascent_for(challenge))
     end
 
     it "shows the number of days left in a challenge once it has started" do
