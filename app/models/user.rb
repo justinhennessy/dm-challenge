@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
     end_date   = challenge.end_date
 
     activities.where("date >= '" + start_date.to_s + "' and date <= '"\
-      + end_date.to_s + "'").sum(:value)
+      + end_date.to_s + "'").sum(:distance)
   end
 
   def activities_for(challenge)

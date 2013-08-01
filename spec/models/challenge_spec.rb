@@ -6,11 +6,11 @@ describe "A challenge" do
       end_date: 21.days.from_now
     user1     = create_user challenge: challenge, commitment: 1000
     user2     = create_user challenge: challenge, commitment: 500
-    create_activity user: user1, value: 100, date: 2.days.ago
-    create_activity user: user1, value: 5, date: 1.day.ago
-    create_activity user: user1, value: 1000, date: 30.day.ago
-    create_activity user: user2, value: 50, date: 2.days.ago
-    create_activity user: user2, value: 200, date: 1.day.ago
+    create_activity user: user1, distance: 100, date: 2.days.ago
+    create_activity user: user1, distance: 5, date: 1.day.ago
+    create_activity user: user1, distance: 1000, date: 30.day.ago
+    create_activity user: user2, distance: 50, date: 2.days.ago
+    create_activity user: user2, distance: 200, date: 1.day.ago
 
     expect(challenge.user_with_highest_kilometers).to eq(user2)
   end
@@ -55,10 +55,10 @@ describe "A challenge" do
       end_date: 21.days.from_now
     user1     = create_user challenge: challenge, commitment: 1000
     user2     = create_user challenge: challenge, commitment: 500
-    create_activity user: user1, value: 100, date: 2.days.ago
-    create_activity user: user1, value: 5, date: 1.day.ago
-    create_activity user: user2, value: 50, date: 2.days.ago
-    create_activity user: user2, value: 200, date: 1.day.ago
+    create_activity user: user1, distance: 100, date: 2.days.ago
+    create_activity user: user1, distance: 5, date: 1.day.ago
+    create_activity user: user2, distance: 50, date: 2.days.ago
+    create_activity user: user2, distance: 200, date: 1.day.ago
 
     expect(challenge.deficit).to eq(125)
   end
@@ -68,10 +68,10 @@ describe "A challenge" do
       end_date: 21.days.from_now
     user1     = create_user challenge: challenge, commitment: 100
     user2     = create_user challenge: challenge, commitment: 100
-    create_activity user: user1, value: 100, date: 2.days.ago
-    create_activity user: user1, value: 5, date: 1.day.ago
-    create_activity user: user2, value: 50, date: 2.days.ago
-    create_activity user: user2, value: 200, date: 1.day.ago
+    create_activity user: user1, distance: 100, date: 2.days.ago
+    create_activity user: user1, distance: 5, date: 1.day.ago
+    create_activity user: user2, distance: 50, date: 2.days.ago
+    create_activity user: user2, distance: 200, date: 1.day.ago
 
     expect(challenge.deficit).to eq(0)
   end
@@ -81,8 +81,8 @@ describe "A challenge" do
       end_date: 21.days.from_now
     user1     = create_user challenge: challenge, commitment: 1000
     user2     = create_user challenge: challenge, commitment: 500
-    create_activity user: user1, value: 5, date: 1.days.ago
-    create_activity user: user1, value: 200, date: 1.day.ago
+    create_activity user: user1, distance: 5, date: 1.days.ago
+    create_activity user: user1, distance: 200, date: 1.day.ago
 
     expect(challenge.accumulated_total).to eq(205)
   end

@@ -17,7 +17,7 @@ There are currently no activities!
     <% @activities.order('date desc').each do |activity| %>
       <tr>
         <td><%= activity.date %></td>
-        <td><%= activity.value %></td>
+        <td><%= activity.distance %></td>
         <td><%= link_to 'Edit', edit_user_activity_path(@user, activity) %>
             <%= link_to 'Delete', user_activity_path(@user, activity),
                 class: 'button',
