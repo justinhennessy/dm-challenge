@@ -15,6 +15,7 @@ group :test, :development do
   gem "travis-lint"
   gem 'cane_extensions', github: 'everydayhero/cane_extensions'
   gem 'database_cleaner'
+  gem 'dotenv-rails'
 
   gem 'simplecov', :require => false
 
