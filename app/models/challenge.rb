@@ -18,7 +18,7 @@ class Challenge < ActiveRecord::Base
   end
 
   def accumulated_total
-    users.inject(0) { |result, user| result + user_activity_sum(user) }
+    users.inject(0) { |result, user| result + user_distance_sum(user) }
   end
 
   def deficit
@@ -29,15 +29,28 @@ class Challenge < ActiveRecord::Base
   def user_with_highest_kilometers
   highest = User.new
   users.each do |user|
-    highest = user if user_activity_sum(user) > user_activity_sum(highest)
+    highest = user if user_distance_sum(user) > user_distance_sum(highest)
+  end
+  highest
+  end
+
+  def user_with_highest_ascent
+  highest = User.new
+  users.each do |user|
+    highest = user if user_ascent_sum(user) > user_ascent_sum(highest)
   end
   highest
   end
 
   private
 
-  def user_activity_sum(user)
+  def user_distance_sum(user)
     user.activities.where("date >= '" + start_date.to_s + "' and date <= '"\
       + end_date.to_s + "'").sum(:distance)
+  end
+
+  def user_ascent_sum(user)
+    user.activities.where("date >= '" + start_date.to_s + "' and date <= '"\
+      + end_date.to_s + "'").sum(:ascent)
   end
 end
