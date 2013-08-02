@@ -88,6 +88,7 @@ describe "Creating a new activity" do
 
     visit new_user_activity_path(user)
 
+    fill_in "Date", with: nil
     fill_in "Distance", with: 10
 
     click_button 'Create Activity'
