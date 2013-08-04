@@ -1,0 +1,8 @@
+Release date 04-08-2013
+- Fixed the default date to only default for new activities as it was over
+  writing dates when editing
+- Implemented the green jersey for the most achievements (sum) within the dates
+  of the current challenge
+- Added edit and delete buttons to replace text links
+- Fixed a calculation error in the deficit
+-

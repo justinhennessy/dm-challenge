@@ -4,7 +4,7 @@
     <div class="row">
       <div class="span3 required">
         <%= f.label :date %>
-        <%= f.text_field :date, value: DateTime.now.strftime("%Y-%m-%d") %>
+        <%= f.text_field :date, autofocus: true%>
       </div>
     </div>
     <div class="row">
@@ -15,7 +15,7 @@
     <div class="row">
       <div class="span3 required">
         <%= f.label :distance %>
-        <%= f.text_field :distance, autofocus: true%>
+        <%= f.text_field :distance %>
       </div>
     </div>
     <div class="row">

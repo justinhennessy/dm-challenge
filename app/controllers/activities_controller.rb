@@ -10,6 +10,7 @@ class ActivitiesController < ApplicationController
   def new
     @user     = User.find(params[:user_id])
     @activity = @user.activities.new
+    @activity.date ||= DateTime.now.strftime("%Y-%m-%d")
   end
 
   def create
