@@ -20,10 +20,10 @@ There are currently no activities!
         <td><%= activity.date %></td>
         <td><%= activity.distance %></td>
         <td><%= activity.ascent %></td>
-        <td><%= link_to 'Edit', edit_user_activity_path(@user, activity) %>
-            <%= link_to 'Delete', user_activity_path(@user, activity),
+        <td><%= link_to( image_tag('modify.png'), edit_user_activity_path(@user, activity)) %>
+            <%= link_to( image_tag('delete.png'), user_activity_path(@user, activity),
                 class: 'button',
-                method: :delete, data: { confirm: 'Are you sure?' } %>
+                method: :delete, data: { confirm: 'Are you sure?' }) %>
         </td>
       </tr>
     <%end%>
