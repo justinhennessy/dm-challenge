@@ -6,3 +6,4 @@ Release date 04-08-2013
 - Added edit and delete buttons to replace text links
 - Fixed a calculation error in the deficit
 - Changed the deficit calculation so it shows a negative when the team is ahead
+- Changed the Add link to be a plus icon when on the acitvity index page
