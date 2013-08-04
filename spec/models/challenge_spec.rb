@@ -51,7 +51,7 @@ describe "A challenge" do
     user1     = create_user challenge: challenge, commitment: 1000
     user2     = create_user challenge: challenge, commitment: 500
 
-    expect(challenge.target_needed_to_date).to eq(480)
+    expect(challenge.target_needed_to_date).to eq(528)
   end
 
   it "can show the daily average needed for the challenge" do
@@ -74,7 +74,7 @@ describe "A challenge" do
     create_activity user: user2, distance: 50, date: 2.days.ago
     create_activity user: user2, distance: 200, date: 1.day.ago
 
-    expect(challenge.deficit).to eq(125)
+    expect(challenge.deficit).to eq(173)
   end
 
   it "shows a 0 deficit if the its negative" do
