@@ -94,19 +94,6 @@ describe "A challenge" do
     expect(challenge.deficit).to eq(173)
   end
 
-  it "shows a 0 deficit if the its negative" do
-    challenge = create_challenge start_date: 10.days.from_now,
-      end_date: 21.days.from_now
-    user1     = create_user challenge: challenge, commitment: 100
-    user2     = create_user challenge: challenge, commitment: 100
-    create_activity user: user1, distance: 100, date: 2.days.ago
-    create_activity user: user1, distance: 5, date: 1.day.ago
-    create_activity user: user2, distance: 50, date: 2.days.ago
-    create_activity user: user2, distance: 200, date: 1.day.ago
-
-    expect(challenge.deficit).to eq(0)
-  end
-
   it "can show the team total accumulated to date" do
     challenge = create_challenge start_date: 10.days.ago,
       end_date: 21.days.from_now
