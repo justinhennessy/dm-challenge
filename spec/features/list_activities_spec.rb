@@ -8,19 +8,19 @@ describe "Viewing a users activity list" do
 
   it "shows a message saying there are no activities"
 
-  it "shows a link to edit each activity" do
-    challenge = create_challenge start_date: 10.days.ago,\
-      end_date: 21.days.from_now
-    @user.challenge = challenge
-    activity1 = create_activity user: @user, distance: 104, date: 4.days.ago
+  it "shows a link to edit each activity"
+  #   challenge = create_challenge start_date: 10.days.ago,\
+  #     end_date: 21.days.from_now
+  #   @user.challenge = challenge
+  #   activity1 = create_activity user: @user, distance: 104, date: 4.days.ago
 
-    visit user_activities_path(@user)
+  #   visit user_activities_path(@user)
 
-   click_link 'Edit'
+  #  click_link 'Edit'
 
-    expect(current_path).to\
-      have_content(edit_user_activity_path(@user, activity1))
-  end
+  #   expect(current_path).to\
+  #     have_content(edit_user_activity_path(@user, activity1))
+  # end
 
   it "shows the list of activities for the current challenge" do
     challenge = create_challenge start_date: 10.days.ago,\
