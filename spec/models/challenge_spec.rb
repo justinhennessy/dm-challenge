@@ -38,7 +38,7 @@ describe "A challenge" do
   end
 
   it "can show the total number of days in a challenge" do
-    challenge = create_challenge start_date: 10.days.ago,\
+    challenge = create_challenge start_date: 10.days.ago,
       end_date: 21.days.from_now
 
     expect(challenge.total_days).to eq(31)
