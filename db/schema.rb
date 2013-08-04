@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130801110245) do
+ActiveRecord::Schema.define(version: 20130804110502) do
 
   create_table "activities", force: true do |t|
     t.date     "date"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20130801110245) do
     t.datetime "updated_at"
     t.integer  "distance"
     t.integer  "ascent"
+    t.integer  "achievements"
   end
 
   add_index "activities", ["user_id"], name: "index_activities_on_user_id"

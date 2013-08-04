@@ -21,6 +21,14 @@ class User < ActiveRecord::Base
       + end_date.to_s + "'").sum(:ascent)
   end
 
+  def sum_of_achievements_for(challenge)
+    start_date = challenge.start_date
+    end_date   = challenge.end_date
+
+    activities.where("date >= '" + start_date.to_s + "' and date <= '"\
+      + end_date.to_s + "'").sum(:achievements)
+  end
+
   def activities_for(challenge)
     start_date = challenge.start_date
     end_date   = challenge.end_date

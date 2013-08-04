@@ -41,6 +41,18 @@ describe "A user" do
     expect(user.sum_of_ascent_for(challenge)).to eq(30)
   end
 
+  it "can show sum of achievements within a date range" do
+    challenge = create_challenge start_date: 5.days.ago, end_date:
+      10.days.from_now
+    user      = create_user challenge: challenge
+    create_activity user: user, distance: 100, achievements: 1, date: 1.days.ago
+    create_activity user: user, distance: 100, date: 2.day.ago
+    create_activity user: user, distance: 100, achievements: 98, date: 3.days.ago
+    create_activity user: user, distance: 5, date: 10.day.ago
+
+    expect(user.sum_of_achievements_for(challenge)).to eq(99)
+  end
+
   it "can show sum of distance within a date range" do
     challenge = create_challenge start_date: 5.days.ago, end_date:
       10.days.from_now
@@ -127,8 +139,8 @@ describe "A user" do
     create_activity user: user1, distance: 100, date: 2.days.ago
     create_activity user: user1, distance: 300, date: 1.day.ago
     create_activity user: user2, distance: 100, date: 1.day.ago
-    create_activity user: user2, distance: 100, date: 1.day.ago
+    create_activity user: user2, distance: 400, date: 1.day.ago
 
-    expect(user1.highest_kilometers?).to eq(TRUE)
+    expect(user2.highest_kilometers?).to eq(TRUE)
   end
 end

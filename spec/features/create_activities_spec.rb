@@ -33,6 +33,20 @@ describe "Creating a new activity" do
     expect(page).to have_text('Activity successfully created!')
   end
 
+  it "saves the activity with achievements shows the user activity list" do
+    visit new_user_activity_path(@user)
+
+    fill_in "Date", with: 1.days.ago
+    fill_in "Distance", with: 31
+    fill_in "Achievements", with: 99
+
+    click_button 'Create Activity'
+
+    expect(current_path).to eq(user_activities_path(@user))
+    expect(page).to have_text('99')
+    expect(page).to have_text('Activity successfully created!')
+  end
+
   it "with a distance = zero produces an error" do
     challenge = create_challenge start_date: 10.days.ago,\
       end_date: 21.days.from_now
@@ -49,7 +63,7 @@ describe "Creating a new activity" do
     expect(page).to have_text('error')
   end
 
-  it "with a Distance less than zero produces an error" do
+  it "with a distance less than zero produces an error" do
     challenge = create_challenge start_date: 10.days.ago,\
       end_date: 21.days.from_now
     user      = create_user challenge: challenge

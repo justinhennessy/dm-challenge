@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "A challenge" do
   it "can show who has the yellow jersey" do
-    challenge = create_challenge start_date: 10.days.ago,\
+    challenge = create_challenge start_date: 10.days.ago,
       end_date: 21.days.from_now
     user1     = create_user challenge: challenge, commitment: 1000
     user2     = create_user challenge: challenge, commitment: 500
@@ -16,7 +16,7 @@ describe "A challenge" do
   end
 
   it "can show who has the spotted jersey" do
-    challenge = create_challenge start_date: 10.days.ago,\
+    challenge = create_challenge start_date: 10.days.ago,
       end_date: 21.days.from_now
     user1     = create_user challenge: challenge, commitment: 1000
     user2     = create_user challenge: challenge, commitment: 500
@@ -27,6 +27,23 @@ describe "A challenge" do
     create_activity user: user2, distance: 200, ascent: 1000,  date: 1.day.ago
 
     expect(challenge.user_with_highest_ascent).to eq(user2)
+  end
+
+  it "can show who has the green jersey" do
+    challenge = create_challenge start_date: 10.days.ago,
+      end_date: 21.days.from_now
+    user1     = create_user challenge: challenge, commitment: 1000
+    user2     = create_user challenge: challenge, commitment: 500
+    create_activity user: user1, distance: 100, date: 2.days.ago
+    create_activity user: user1, distance: 5, date: 1.day.ago
+    create_activity user: user1, distance: 1000, achievements: 10,
+      date: 30.day.ago
+    create_activity user: user2, distance: 50, achievements: 11,
+      date: 2.days.ago
+    create_activity user: user2, distance: 200, achievements: 11,
+      date: 1.day.ago
+
+    expect(challenge.user_with_highest_achievements).to eq(user2)
   end
 
   it "can show the total commitment/target of its participants" do
@@ -46,7 +63,7 @@ describe "A challenge" do
 
   it "can show the accumulated daily average needed to achieve\
     the target in the challenge time period" do
-    challenge = create_challenge start_date: 10.days.ago,\
+    challenge = create_challenge start_date: 10.days.ago,
       end_date: 21.days.from_now
     user1     = create_user challenge: challenge, commitment: 1000
     user2     = create_user challenge: challenge, commitment: 500
@@ -55,7 +72,7 @@ describe "A challenge" do
   end
 
   it "can show the daily average needed for the challenge" do
-    challenge = create_challenge start_date: 10.days.ago,\
+    challenge = create_challenge start_date: 10.days.ago,
       end_date: 21.days.from_now
     user1     = create_user challenge: challenge, commitment: 1000
     user2     = create_user challenge: challenge, commitment: 500
@@ -65,7 +82,7 @@ describe "A challenge" do
 
   it "can show the deficit between the accumulated daily average and the\
     accumulated actual" do
-    challenge = create_challenge start_date: 10.days.ago,\
+    challenge = create_challenge start_date: 10.days.ago,
       end_date: 21.days.from_now
     user1     = create_user challenge: challenge, commitment: 1000
     user2     = create_user challenge: challenge, commitment: 500
@@ -78,7 +95,7 @@ describe "A challenge" do
   end
 
   it "shows a 0 deficit if the its negative" do
-    challenge = create_challenge start_date: 10.days.from_now,\
+    challenge = create_challenge start_date: 10.days.from_now,
       end_date: 21.days.from_now
     user1     = create_user challenge: challenge, commitment: 100
     user2     = create_user challenge: challenge, commitment: 100
@@ -91,7 +108,7 @@ describe "A challenge" do
   end
 
   it "can show the team total accumulated to date" do
-    challenge = create_challenge start_date: 10.days.ago,\
+    challenge = create_challenge start_date: 10.days.ago,
       end_date: 21.days.from_now
     user1     = create_user challenge: challenge, commitment: 1000
     user2     = create_user challenge: challenge, commitment: 500
