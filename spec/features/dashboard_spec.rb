@@ -3,8 +3,8 @@ require 'spec_helper'
 describe "Viewing the dashboard" do
   let(:commitment) { 1000 }
   let(:challenge) {
-    create_challenge start_date: 10.days.ago.utc,
-      end_date: 21.days.from_now.utc
+    create_challenge start_date: 10.days.ago,
+      end_date: 21.days.from_now
   }
   let(:user) {
     create_user challenge: challenge, commitment: commitment
@@ -22,10 +22,10 @@ describe "Viewing the dashboard" do
      }
 
     before(:each) do
-      create_activity user: user, distance: 100, ascent: 20, date: 2.days.ago
-      create_activity user: user, distance: 5, ascent: 10, date: 1.day.ago
-      create_activity user: user2, distance: 50, ascent: 1, date: 2.days.ago
-      create_activity user: user2, distance: 200, ascent: 1, date: 1.day.ago
+      create_activity user: user, distance: 100, ascent: 20, date: 2.days.ago.utc
+      create_activity user: user, distance: 5, ascent: 10, date: 1.day.ago.utc
+      create_activity user: user2, distance: 50, ascent: 1, date: 2.days.ago.utc
+      create_activity user: user2, distance: 200, ascent: 1, date: 1.day.ago.utc
     end
 
     it "shows a yellow jersey on the individual with the most kms" do
@@ -82,13 +82,13 @@ describe "Viewing the dashboard" do
     it "shows the accumulative total needed to hit challenge target to date" do
       visit dashboard_path
 
-      expect(page).to have_text("480 Total needed to date")
+      expect(page).to have_text("528 Total needed to date")
     end
 
     it "shows the deficit, the difference between actual and daily target" do
       visit dashboard_path
 
-      expect(page).to have_text("125 Deficit")
+      expect(page).to have_text("173 Deficit")
     end
 
     it "shows a link that a user can click to see a list of their activities for the current challenge"
@@ -111,8 +111,8 @@ describe "Viewing the dashboard" do
 
   context "with a challenge in the future" do
     let(:challenge) {
-      create_challenge start_date: 12.days.from_now.utc,
-        end_date: 30.days.from_now.utc
+      create_challenge start_date: 12.days.from_now,
+        end_date: 30.days.from_now
     }
 
     it "shows the number of days until the challenge starts" do
