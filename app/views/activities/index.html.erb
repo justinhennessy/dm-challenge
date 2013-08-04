@@ -11,6 +11,7 @@ There are currently no activities!
       <th>Date</th>
       <th>kms</th>
       <th>m</th>
+      <th>#</th>
       <th>Action</th>
     </tr>
   </thead>
@@ -20,6 +21,7 @@ There are currently no activities!
         <td><%= activity.date %></td>
         <td><%= activity.distance %></td>
         <td><%= activity.ascent %></td>
+        <td><%= activity.achievements %></td>
         <td><%= link_to( image_tag('modify.png'), edit_user_activity_path(@user, activity)) %>
             <%= link_to( image_tag('delete.png'), user_activity_path(@user, activity),
                 class: 'button',

@@ -26,6 +26,12 @@
     </div>
     <div class="row">
       <div class="span3 required">
+        <%= f.label :achievements %>
+        <%= f.text_field :achievements%>
+      </div>
+    </div>
+    <div class="row">
+      <div class="span3 required">
         <%= f.submit %>
         <%= link_to "Cancel", user_activities_path(@user), class: 'button' %>
       </div>

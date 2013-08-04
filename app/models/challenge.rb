@@ -27,30 +27,45 @@ class Challenge < ActiveRecord::Base
   end
 
   def user_with_highest_kilometers
-  highest = User.new
-  users.each do |user|
-    highest = user if user_distance_sum(user) > user_distance_sum(highest)
-  end
-  highest
+    highest = User.new
+    users.each do |user|
+      highest = user if user_distance_sum(user) > user_distance_sum(highest)
+    end
+    highest
   end
 
   def user_with_highest_ascent
-  highest = User.new
-  users.each do |user|
-    highest = user if user_ascent_sum(user) > user_ascent_sum(highest)
+    highest = User.new
+    users.each do |user|
+      highest = user if user_ascent_sum(user) > user_ascent_sum(highest)
+    end
+    highest
   end
-  highest
+
+  def user_with_highest_achievements
+    highest = User.new
+    users.each do |user|
+      highest = user if user_achievement_sum(user) > user_achievement_sum(highest)
+    end
+    highest
   end
 
   private
 
   def user_distance_sum(user)
-    user.activities.where("date >= '" + start_date.to_s + "' and date <= '"\
-      + end_date.to_s + "'").sum(:distance)
+    sum_stat(user, :distance)
   end
 
   def user_ascent_sum(user)
+    sum_stat(user, :ascent)
+  end
+
+  def user_achievement_sum(user)
+    sum_stat(user, :achievements)
+  end
+
+  def sum_stat(user, stat_to_sum)
     user.activities.where("date >= '" + start_date.to_s + "' and date <= '"\
-      + end_date.to_s + "'").sum(:ascent)
+      + end_date.to_s + "'").sum(stat_to_sum)
   end
 end
