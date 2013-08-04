@@ -22,8 +22,7 @@ class Challenge < ActiveRecord::Base
   end
 
   def deficit
-    deficit = target_needed_to_date - accumulated_total
-    deficit < 0 ? 0 : deficit
+    target_needed_to_date - accumulated_total
   end
 
   def user_with_highest_kilometers
