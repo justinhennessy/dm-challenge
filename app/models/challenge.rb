@@ -26,27 +26,15 @@ class Challenge < ActiveRecord::Base
   end
 
   def user_with_highest_kilometers
-    highest = User.new
-    users.each do |user|
-      highest = user if user_distance_sum(user) > user_distance_sum(highest)
-    end
-    highest
+    users.max { |a, b| user_distance_sum(a) <=> user_distance_sum(b) }
   end
 
   def user_with_highest_ascent
-    highest = User.new
-    users.each do |user|
-      highest = user if user_ascent_sum(user) > user_ascent_sum(highest)
-    end
-    highest
+    users.max { |a, b| user_ascent_sum(a) <=> user_ascent_sum(b) }
   end
 
   def user_with_highest_achievements
-    highest = User.new
-    users.each do |user|
-      highest = user if user_achievement_sum(user) > user_achievement_sum(highest)
-    end
-    highest
+    users.max { |a, b| user_achievement_sum(a) <=> user_achievement_sum(b) }
   end
 
   private
