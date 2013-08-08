@@ -37,6 +37,14 @@ class Challenge < ActiveRecord::Base
     users.max { |a, b| user_achievement_sum(a) <=> user_achievement_sum(b) }
   end
 
+  def participant_with_highest_kilometers
+    users.highest_km_for(period)
+  end
+
+  def period
+    OpenStruct.new(start: start_date, finish: end_date)
+  end
+
   private
 
   def user_distance_sum(user)
