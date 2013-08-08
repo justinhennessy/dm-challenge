@@ -6,27 +6,15 @@ class User < ActiveRecord::Base
   validates :name, presence: true
 
   def sum_of_distance_for(challenge)
-    start_date = challenge.start_date
-    end_date   = challenge.end_date
-
-    activities.where("date >= '" + start_date.to_s + "' and date <= '"\
-      + end_date.to_s + "'").sum(:distance)
+    activities.total_stat_between(challenge.period, :distance)
   end
 
   def sum_of_ascent_for(challenge)
-    start_date = challenge.start_date
-    end_date   = challenge.end_date
-
-    activities.where("date >= '" + start_date.to_s + "' and date <= '"\
-      + end_date.to_s + "'").sum(:ascent)
+    activities.total_stat_between(challenge.period, :ascent)
   end
 
   def sum_of_achievements_for(challenge)
-    start_date = challenge.start_date
-    end_date   = challenge.end_date
-
-    activities.where("date >= '" + start_date.to_s + "' and date <= '"\
-      + end_date.to_s + "'").sum(:achievements)
+    activities.total_stat_between(challenge.period, :achievements)
   end
 
   def activities_for(challenge)
@@ -47,6 +35,10 @@ class User < ActiveRecord::Base
 
   def highest_kilometers?
     challenge.user_with_highest_kilometers == self
+  end
+
+  def self.highest_km_for(period)
+    activities.total_stat_between(period)
   end
 
   def self.from_omniauth(auth)

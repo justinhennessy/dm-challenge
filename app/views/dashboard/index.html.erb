@@ -49,13 +49,15 @@
           <tbody>
             <% @challenge.users.each do |user| %>
             <tr>
-              <td><%= link_to_if current_user == user, user.preferred_name, user_activities_path(user) %>
+              <td>
+                <%= link_to_if current_user == user, user.preferred_name,
+                  user_activities_path(user) %>
                 <%= image_tag 'yellow_jersey.png'\
-                if user == @challenge.user_with_highest_kilometers %>
+                  if user == @challenge.user_with_highest_kilometers %>
                 <%= image_tag 'spotted_jersey.png'\
-                if user == @challenge.user_with_highest_ascent %>
+                  if user == @challenge.user_with_highest_ascent %>
                 <%= image_tag 'green_jersey.png'\
-                if user == @challenge.user_with_highest_achievements %></td>
+                  if user == @challenge.user_with_highest_achievements %></td>
               <td><%= user.sum_of_distance_for(@challenge) %></td>
               <td><%= user.sum_of_ascent_for(@challenge) %></td>
               <td><%= user.sum_of_achievements_for(@challenge) %></td>
