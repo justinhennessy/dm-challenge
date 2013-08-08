@@ -61,8 +61,7 @@ describe "A challenge" do
     expect(challenge.total_days).to eq(31)
   end
 
-  it "can show the accumulated daily average needed to achieve\
-    the target in the challenge time period" do
+  it "can show the accumulated daily average needed to achieve the target in the challenge time period" do
     challenge = create_challenge start_date: 10.days.ago,
       end_date: 21.days.from_now
     user1     = create_user challenge: challenge, commitment: 1000
@@ -80,8 +79,7 @@ describe "A challenge" do
     expect(challenge.daily_average).to eq(48)
   end
 
-  it "can show the deficit between the accumulated daily average and the\
-    accumulated actual" do
+  it "can show the deficit between the accumulated daily average and the accumulated actual" do
     challenge = create_challenge start_date: 10.days.ago,
       end_date: 21.days.from_now
     user1     = create_user challenge: challenge, commitment: 1000
