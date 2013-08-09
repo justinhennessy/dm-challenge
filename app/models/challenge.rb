@@ -14,7 +14,8 @@ class Challenge < ActiveRecord::Base
   end
 
   def target_needed_to_date
-    (start_date < Time.now.to_date) ? daily_average * (Time.now.to_date - start_date + 1).to_i : 0
+    start_date < Time.now.to_date ?
+      daily_average * (Time.now.to_date - start_date + 1).to_i : 0
   end
 
   def accumulated_total
@@ -39,6 +40,6 @@ class Challenge < ActiveRecord::Base
 
   def period
     # TODO - change to start_date..end_date
-    OpenStruct.new(start: start_date, finish: end_date)
+    OpenStruct.new start: start_date, finish: end_date
   end
 end
