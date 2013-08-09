@@ -37,6 +37,18 @@ class Challenge < ActiveRecord::Base
     users.highest_achievements_within_period period
   end
 
+  def highest_kilometers? user
+    user == user_with_highest_kilometers
+  end
+
+  def highest_ascent? user
+    user == user_with_highest_ascent
+  end
+
+  def highest_achievements? user
+    user == user_with_highest_achievements
+  end
+
   def period
     # TODO - change to start_date..end_date
     OpenStruct.new(start: start_date, finish: end_date)
