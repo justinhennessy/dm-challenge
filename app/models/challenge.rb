@@ -27,15 +27,15 @@ class Challenge < ActiveRecord::Base
   end
 
   def user_with_highest_kilometers
-    users.highest users, :distance, period
+    users.highest_kilometers_within_period period
   end
 
   def user_with_highest_ascent
-    users.highest users, :ascent, period
+    users.highest_ascent_within_period period
   end
 
   def user_with_highest_achievements
-    users.highest users, :distance, period
+    users.highest_achievements_within_period period
   end
 
   def period

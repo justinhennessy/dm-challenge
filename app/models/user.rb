@@ -33,9 +33,19 @@ class User < ActiveRecord::Base
     challenge.user_with_highest_kilometers == self
   end
 
-  def self.highest users, stat_to_sum, period
-    users.max { |a, b| a.activities.total_stat_between(period,stat_to_sum)\
-      <=> b.activities.total_stat_between(period, stat_to_sum)}
+  def self.highest_kilometers_within_period  period
+    all.max { |a, b| a.activities.total_stat_between(period, :distance)\
+      <=> b.activities.total_stat_between(period, :distance) }
+  end
+
+  def self.highest_ascent_within_period  period
+    all.max { |a, b| a.activities.total_stat_between(period, :ascent)\
+      <=> b.activities.total_stat_between(period, :ascent) }
+  end
+
+  def self.highest_achievements_within_period  period
+    all.max { |a, b| a.activities.total_stat_between(period, :achievements)\
+      <=> b.activities.total_stat_between(period, :achievements) }
   end
 
   def self.from_omniauth auth
