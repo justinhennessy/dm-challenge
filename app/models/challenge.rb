@@ -18,7 +18,7 @@ class Challenge < ActiveRecord::Base
   end
 
   def accumulated_total
-    users.inject(0) { |result, user| result + user_distance_sum(user) }
+    users.inject(0) { |result, user| result + user.sum_of_distance_for(period) }
   end
 
   def deficit
@@ -40,23 +40,5 @@ class Challenge < ActiveRecord::Base
   def period
     # TODO - change to start_date..end_date
     OpenStruct.new(start: start_date, finish: end_date)
-  end
-
-  private
-
-  def user_distance_sum(user)
-    sum_stat(user, :distance)
-  end
-
-  def user_ascent_sum(user)
-    sum_stat(user, :ascent)
-  end
-
-  def user_achievement_sum(user)
-    sum_stat(user, :achievements)
-  end
-
-  def sum_stat(user, stat_to_sum)
-    user.activities.where(date: period.start..period.finish).sum(stat_to_sum)
   end
 end
