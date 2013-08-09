@@ -11,4 +11,8 @@ class Activity < ActiveRecord::Base
   def self.between(period)
     where("date >= ? and date <= ?", period.start, period.finish)
   end
+
+  def self.list(period)
+    where("date >= ? and date <= ?", period.start, period.finish)
+  end
 end
