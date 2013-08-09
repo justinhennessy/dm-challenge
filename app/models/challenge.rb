@@ -57,7 +57,6 @@ class Challenge < ActiveRecord::Base
   end
 
   def sum_stat(user, stat_to_sum)
-    user.activities.where("date >= '" + start_date.to_s + "' and date <= '"\
-      + end_date.to_s + "'").sum(stat_to_sum)
+    user.activities.where(date: period.start..period.finish).sum(stat_to_sum)
   end
 end
