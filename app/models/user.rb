@@ -5,24 +5,20 @@ class User < ActiveRecord::Base
   #validates :commitment, presence: true, :numericality => { greater_than: 0 }
   validates :name, presence: true
 
-  def sum_of_distance_for(challenge)
+  def sum_of_distance_for period
     activities.total_stat_between(challenge.period, :distance)
   end
 
-  def sum_of_ascent_for(challenge)
+  def sum_of_ascent_for period
     activities.total_stat_between(challenge.period, :ascent)
   end
 
-  def sum_of_achievements_for(challenge)
+  def sum_of_achievements_for period
     activities.total_stat_between(challenge.period, :achievements)
   end
 
-  def activities_for(challenge)
-    start_date = challenge.start_date
-    end_date   = challenge.end_date
-
-    activities.where("date >= '" + start_date.to_s + "' and date <= '"\
-      + end_date.to_s + "'")
+  def activities_for period
+    activities.list(period)
   end
 
   def percent_completed
@@ -37,12 +33,12 @@ class User < ActiveRecord::Base
     challenge.user_with_highest_kilometers == self
   end
 
-  def self.highest(users, stat_to_sum, period)
+  def self.highest users, stat_to_sum, period
     users.max { |a, b| a.activities.total_stat_between(period,stat_to_sum)\
       <=> b.activities.total_stat_between(period, stat_to_sum)}
   end
 
-  def self.from_omniauth(auth)
+  def self.from_omniauth auth
     where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
       user.provider = auth.provider
       user.uid = auth.uid
