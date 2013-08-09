@@ -114,7 +114,7 @@ describe "A user" do
     activity1 = create_activity user: user, distance: 100, date: 1.days.ago
     create_activity user: user, distance: 5, date: 10.day.ago
 
-    expect(user.activities_for(challenge)).to eq([] << activity1)
+    expect(user.activities_for(challenge.period)).to eq([] << activity1)
   end
 
   it "can show the % completed of a commitment" do
