@@ -5,16 +5,16 @@ class User < ActiveRecord::Base
   #validates :commitment, presence: true, :numericality => { greater_than: 0 }
   validates :name, presence: true
 
-  def sum_of_distance_for period
-    activities.total_stat_between(challenge.period, :distance)
+  def total_distance_for period
+    activities.total_distance_between period
   end
 
-  def sum_of_ascent_for period
-    activities.total_stat_between(challenge.period, :ascent)
+  def total_ascent_for period
+    activities.total_ascent_between period
   end
 
-  def sum_of_achievements_for period
-    activities.total_stat_between(challenge.period, :achievements)
+  def total_achievements_for period
+    activities.total_achievements_between period
   end
 
   def activities_for period
@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
   end
 
   def percent_completed
-    commitment ? ((sum_of_distance_for(challenge).to_f / commitment) * 100).to_i : 0
+    commitment ? ((total_distance_for(challenge.period).to_f / commitment) * 100).to_i : 0
   end
 
   def preferred_name
@@ -33,19 +33,19 @@ class User < ActiveRecord::Base
     challenge.user_with_highest_kilometers == self
   end
 
-  def self.highest_kilometers_within_period  period
-    all.max { |a, b| a.activities.total_stat_between(period, :distance)\
-      <=> b.activities.total_stat_between(period, :distance) }
+  def self.highest_kilometers_within_period period
+    all.max { |a, b| a.activities.total_distance_between(period)\
+      <=> b.activities.total_distance_between(period) }
   end
 
-  def self.highest_ascent_within_period  period
-    all.max { |a, b| a.activities.total_stat_between(period, :ascent)\
-      <=> b.activities.total_stat_between(period, :ascent) }
+  def self.highest_ascent_within_period period
+    all.max { |a, b| a.activities.total_ascent_between(period)\
+      <=> b.activities.total_ascent_between(period) }
   end
 
-  def self.highest_achievements_within_period  period
-    all.max { |a, b| a.activities.total_stat_between(period, :achievements)\
-      <=> b.activities.total_stat_between(period, :achievements) }
+  def self.highest_achievements_within_period period
+    all.max { |a, b| a.activities.total_achievements_between(period)\
+      <=> b.activities.total_achievements_between(period) }
   end
 
   def self.from_omniauth auth

@@ -38,7 +38,7 @@ describe "A user" do
     create_activity user: user, distance: 100, ascent: 20, date: 3.days.ago
     create_activity user: user, distance: 5, date: 10.day.ago
 
-    expect(user.sum_of_ascent_for(challenge)).to eq(30)
+    expect(user.total_ascent_for(challenge.period)).to eq(30)
   end
 
   it "can show sum of achievements within a date range" do
@@ -50,7 +50,7 @@ describe "A user" do
     create_activity user: user, distance: 100, achievements: 98, date: 3.days.ago
     create_activity user: user, distance: 5, date: 10.day.ago
 
-    expect(user.sum_of_achievements_for(challenge)).to eq(99)
+    expect(user.total_achievements_for(challenge.period)).to eq(99)
   end
 
   it "can show sum of distance within a date range" do
@@ -62,7 +62,7 @@ describe "A user" do
     create_activity user: user, distance: 100, date: 3.days.ago
     create_activity user: user, distance: 5, date: 10.day.ago
 
-    expect(user.sum_of_distance_for(challenge)).to eq(300)
+    expect(user.total_distance_for(challenge.period)).to eq(300)
   end
 
   it "can show a sum of distance with one on the first day of the\
@@ -74,7 +74,7 @@ describe "A user" do
     create_activity user: user, distance: 100, date: 5.days.ago
     create_activity user: user, distance: 100, date: 4.days.ago
 
-    expect(user.sum_of_distance_for(challenge)).to eq(200)
+    expect(user.total_distance_for(challenge.period)).to eq(200)
   end
 
   it "can show a sum of distances with one on the last day of the\
@@ -86,7 +86,7 @@ describe "A user" do
     create_activity user: user, distance: 45, date: 10.days.from_now
     create_activity user: user, distance: 100, date: 11.days.from_now
 
-    expect(user.sum_of_distance_for(challenge)).to eq(95)
+    expect(user.total_distance_for(challenge.period)).to eq(95)
   end
 
   it "can show an activity that is logged on the first day of a challenge" do
@@ -95,7 +95,7 @@ describe "A user" do
     user      = create_user challenge: challenge
     create_activity user: user, distance: 50, date: 5.days.ago
 
-    expect(user.sum_of_distance_for(challenge)).to eq(50)
+    expect(user.total_distance_for(challenge.period)).to eq(50)
   end
 
   it "can show an activity that is logged on the last day of a challenge" do
@@ -104,7 +104,7 @@ describe "A user" do
     user      = create_user challenge: challenge
     create_activity user: user, distance: 50, date: 10.days.from_now
 
-    expect(user.sum_of_distance_for(challenge)).to eq(50)
+    expect(user.total_distance_for(challenge.period)).to eq(50)
   end
 
   it "can show actvities within a date range" do
@@ -114,7 +114,7 @@ describe "A user" do
     activity1 = create_activity user: user, distance: 100, date: 1.days.ago
     create_activity user: user, distance: 5, date: 10.day.ago
 
-    expect(user.activities_for(challenge.period)).to eq([] << activity1)
+    expect(user.activities_for(challenge.period)).to eq([activity1])
   end
 
   it "can show the % completed of a commitment" do

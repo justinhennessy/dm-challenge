@@ -58,8 +58,8 @@ describe "Viewing the dashboard" do
 
       expect(page).to have_text(user.preferred_name)
       expect(page).to have_text(user2.preferred_name)
-      expect(page).to have_text(user.sum_of_distance_for(challenge))
-      expect(page).to have_text(user2.sum_of_distance_for(challenge))
+      expect(page).to have_text(user.total_distance_for(challenge.period))
+      expect(page).to have_text(user2.total_distance_for(challenge.period))
       expect(page).to have_text(user.percent_completed)
       expect(page).to have_text(user2.percent_completed)
     end
@@ -67,7 +67,7 @@ describe "Viewing the dashboard" do
     it "shows a sum of meters ascented" do
       visit dashboard_path
 
-      expect(page).to have_text(user.sum_of_ascent_for(challenge))
+      expect(page).to have_text(user.total_ascent_for(challenge.period))
     end
 
     it "shows the number of days left in a challenge once it has started" do

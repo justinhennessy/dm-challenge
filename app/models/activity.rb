@@ -4,8 +4,16 @@ class Activity < ActiveRecord::Base
   validates :distance, presence: true, :numericality => { greater_than: 0 }
   validates :date, presence: true
 
-  def self.total_stat_between(period, stat_to_sum)
-    between(period).sum(stat_to_sum)
+  def self.total_distance_between(period)
+    between(period).sum(:distance)
+  end
+
+  def self.total_ascent_between(period)
+    between(period).sum(:ascent)
+  end
+
+  def self.total_achievements_between(period)
+    between(period).sum(:achievements)
   end
 
   def self.between(period)

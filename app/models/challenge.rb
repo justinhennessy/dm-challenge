@@ -6,7 +6,7 @@ class Challenge < ActiveRecord::Base
   end
 
   def daily_average
-    (target/total_days).to_i
+    (target / total_days).to_i
   end
 
   def total_days
@@ -14,12 +14,11 @@ class Challenge < ActiveRecord::Base
   end
 
   def target_needed_to_date
-    start_date < Time.now.to_date ?
-      daily_average * (Time.now.to_date - start_date + 1).to_i : 0
+    (start_date < Time.now.to_date) ? daily_average * (Time.now.to_date - start_date + 1).to_i : 0
   end
 
   def accumulated_total
-    users.inject(0) { |result, user| result + user.sum_of_distance_for(period) }
+    users.inject(0) { |result, user| result + user.total_distance_for(period) }
   end
 
   def deficit
@@ -40,6 +39,6 @@ class Challenge < ActiveRecord::Base
 
   def period
     # TODO - change to start_date..end_date
-    OpenStruct.new start: start_date, finish: end_date
+    OpenStruct.new(start: start_date, finish: end_date)
   end
 end
