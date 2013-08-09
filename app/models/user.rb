@@ -5,40 +5,24 @@ class User < ActiveRecord::Base
   #validates :commitment, presence: true, :numericality => { greater_than: 0 }
   validates :name, presence: true
 
-  def sum_of_distance_for(challenge)
-    start_date = challenge.start_date
-    end_date   = challenge.end_date
-
-    activities.where("date >= '" + start_date.to_s + "' and date <= '"\
-      + end_date.to_s + "'").sum(:distance)
+  def total_distance_for period
+    activities.total_distance_between period
   end
 
-  def sum_of_ascent_for(challenge)
-    start_date = challenge.start_date
-    end_date   = challenge.end_date
-
-    activities.where("date >= '" + start_date.to_s + "' and date <= '"\
-      + end_date.to_s + "'").sum(:ascent)
+  def total_ascent_for period
+    activities.total_ascent_between period
   end
 
-  def sum_of_achievements_for(challenge)
-    start_date = challenge.start_date
-    end_date   = challenge.end_date
-
-    activities.where("date >= '" + start_date.to_s + "' and date <= '"\
-      + end_date.to_s + "'").sum(:achievements)
+  def total_achievements_for period
+    activities.total_achievements_between period
   end
 
-  def activities_for(challenge)
-    start_date = challenge.start_date
-    end_date   = challenge.end_date
-
-    activities.where("date >= '" + start_date.to_s + "' and date <= '"\
-      + end_date.to_s + "'")
+  def activities_for period
+    activities.list(period)
   end
 
   def percent_completed
-    commitment ? ((sum_of_distance_for(challenge).to_f / commitment) * 100).to_i : 0
+    commitment ? ((total_distance_for(challenge.period).to_f / commitment) * 100).to_i : 0
   end
 
   def preferred_name
@@ -49,7 +33,22 @@ class User < ActiveRecord::Base
     challenge.user_with_highest_kilometers == self
   end
 
-  def self.from_omniauth(auth)
+  def self.highest_kilometers_within_period period
+    all.max { |a, b| a.activities.total_distance_between(period)\
+      <=> b.activities.total_distance_between(period) }
+  end
+
+  def self.highest_ascent_within_period period
+    all.max { |a, b| a.activities.total_ascent_between(period)\
+      <=> b.activities.total_ascent_between(period) }
+  end
+
+  def self.highest_achievements_within_period period
+    all.max { |a, b| a.activities.total_achievements_between(period)\
+      <=> b.activities.total_achievements_between(period) }
+  end
+
+  def self.from_omniauth auth
     where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
       user.provider = auth.provider
       user.uid = auth.uid

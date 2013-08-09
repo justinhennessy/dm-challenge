@@ -4,7 +4,7 @@ class ActivitiesController < ApplicationController
   def index
     @challenge  = Challenge.first
     @user       = User.find(params[:user_id])
-    @activities = @user.activities_for(@challenge)
+    @activities = @user.activities_for(@challenge.period)
   end
 
   def new

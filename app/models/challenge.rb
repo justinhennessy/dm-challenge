@@ -6,7 +6,7 @@ class Challenge < ActiveRecord::Base
   end
 
   def daily_average
-    (target/total_days).to_i
+    (target / total_days).to_i
   end
 
   def total_days
@@ -18,7 +18,7 @@ class Challenge < ActiveRecord::Base
   end
 
   def accumulated_total
-    users.inject(0) { |result, user| result + user_distance_sum(user) }
+    users.inject(0) { |result, user| result + user.total_distance_for(period) }
   end
 
   def deficit
@@ -26,33 +26,31 @@ class Challenge < ActiveRecord::Base
   end
 
   def user_with_highest_kilometers
-    users.max { |a, b| user_distance_sum(a) <=> user_distance_sum(b) }
+    users.highest_kilometers_within_period period
   end
 
   def user_with_highest_ascent
-    users.max { |a, b| user_ascent_sum(a) <=> user_ascent_sum(b) }
+    users.highest_ascent_within_period period
   end
 
   def user_with_highest_achievements
-    users.max { |a, b| user_achievement_sum(a) <=> user_achievement_sum(b) }
+    users.highest_achievements_within_period period
   end
 
-  private
-
-  def user_distance_sum(user)
-    sum_stat(user, :distance)
+  def highest_kilometers? user
+    user == user_with_highest_kilometers
   end
 
-  def user_ascent_sum(user)
-    sum_stat(user, :ascent)
+  def highest_ascent? user
+    user == user_with_highest_ascent
   end
 
-  def user_achievement_sum(user)
-    sum_stat(user, :achievements)
+  def highest_achievements? user
+    user == user_with_highest_achievements
   end
 
-  def sum_stat(user, stat_to_sum)
-    user.activities.where("date >= '" + start_date.to_s + "' and date <= '"\
-      + end_date.to_s + "'").sum(stat_to_sum)
+  def period
+    # TODO - change to start_date..end_date
+    OpenStruct.new(start: start_date, finish: end_date)
   end
 end
