@@ -26,22 +26,19 @@ class Challenge < ActiveRecord::Base
   end
 
   def user_with_highest_kilometers
-    users.max { |a, b| user_distance_sum(a) <=> user_distance_sum(b) }
+    users.highest users, :distance, period
   end
 
   def user_with_highest_ascent
-    users.max { |a, b| user_ascent_sum(a) <=> user_ascent_sum(b) }
+    users.highest users, :ascent, period
   end
 
   def user_with_highest_achievements
-    users.max { |a, b| user_achievement_sum(a) <=> user_achievement_sum(b) }
-  end
-
-  def participant_with_highest_kilometers
-    users.highest_km_for(period)
+    users.highest users, :distance, period
   end
 
   def period
+    # TODO - change to start_date..end_date
     OpenStruct.new(start: start_date, finish: end_date)
   end
 
