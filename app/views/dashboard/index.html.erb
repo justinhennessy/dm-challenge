@@ -58,9 +58,9 @@
                   if user == @challenge.user_with_highest_ascent %>
                 <%= image_tag 'green_jersey.png'\
                   if user == @challenge.user_with_highest_achievements %></td>
-              <td><%= user.sum_of_distance_for(@challenge) %></td>
-              <td><%= user.sum_of_ascent_for(@challenge) %></td>
-              <td><%= user.sum_of_achievements_for(@challenge) %></td>
+              <td><%= user.sum_of_distance_for(@challenge.period) %></td>
+              <td><%= user.sum_of_ascent_for(@challenge.period) %></td>
+              <td><%= user.sum_of_achievements_for(@challenge.period) %></td>
               <td><%= user.percent_completed %></td>
             </tr>
           </tbody>
