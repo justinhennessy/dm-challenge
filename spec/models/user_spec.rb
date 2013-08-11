@@ -1,26 +1,23 @@
 require 'spec_helper'
 
 describe "A user" do
-  it "must not have a blank name" do
-    user = User.new(commitment: 1000)
+  let(:commitment) { 1000 }
+  let(:challenge) {
+    create_challenge start_date: 10.days.ago,
+      end_date: 21.days.from_now
+  }
+  let(:user) {
+    create_user challenge: challenge, commitment: commitment
+  }
 
-    expect(user.valid?).to be_false
-    expect(user.errors[:name].first).to eq("can't be blank")
+  before(:each) do
+    create_activity user: user, distance: 100, ascent: 20, achievements: 1, date: 2.days.ago
+    create_activity user: user, distance: 5, ascent: 10, achievements: 98, date: 1.day.ago
   end
 
   it "must not have a 0 commitment"
-  #   user = User.new(name: "Joe", commitment: 0)
-
-  #   expect(user.valid?).to be_false
-  #   expect(user.errors[:commitment].first).to eq("must be greater than 0")
-  # end
 
   it "can't have a blank commitment"
-  #   user = User.new(name: "Joe")
-
-  #   expect(user.valid?).to be_false
-  #   expect(user.errors[:commitment].first).to eq("can't be blank")
-  # end
 
   it "name can't be blank" do
     user = User.new(commitment: 100)
@@ -30,94 +27,18 @@ describe "A user" do
   end
 
   it "can show sum of ascent within a date range" do
-    challenge = create_challenge start_date: 5.days.ago, end_date:
-      10.days.from_now
-    user      = create_user challenge: challenge
-    create_activity user: user, distance: 100, ascent: 10, date: 1.days.ago
-    create_activity user: user, distance: 100, date: 2.day.ago
-    create_activity user: user, distance: 100, ascent: 20, date: 3.days.ago
-    create_activity user: user, distance: 5, date: 10.day.ago
-
     expect(user.total_ascent_for(challenge.period)).to eq(30)
   end
 
   it "can show sum of achievements within a date range" do
-    challenge = create_challenge start_date: 5.days.ago, end_date:
-      10.days.from_now
-    user      = create_user challenge: challenge
-    create_activity user: user, distance: 100, achievements: 1, date: 1.days.ago
-    create_activity user: user, distance: 100, date: 2.day.ago
-    create_activity user: user, distance: 100, achievements: 98, date: 3.days.ago
-    create_activity user: user, distance: 5, date: 10.day.ago
-
     expect(user.total_achievements_for(challenge.period)).to eq(99)
   end
 
   it "can show sum of distance within a date range" do
-    challenge = create_challenge start_date: 5.days.ago, end_date:
-      10.days.from_now
-    user      = create_user challenge: challenge
-    create_activity user: user, distance: 100, date: 1.days.ago
-    create_activity user: user, distance: 100, date: 2.day.ago
-    create_activity user: user, distance: 100, date: 3.days.ago
-    create_activity user: user, distance: 5, date: 10.day.ago
-
-    expect(user.total_distance_for(challenge.period)).to eq(300)
+    expect(user.total_distance_for(challenge.period)).to eq(105)
   end
 
-  it "can show a sum of distance with one on the first day of the\
-    challenge" do
-    challenge = create_challenge start_date: 5.days.ago,
-      end_date: 10.days.from_now
-    user      = create_user challenge: challenge, commitment: 500
-    create_activity user: user, distance: 100, date: 6.days.ago
-    create_activity user: user, distance: 100, date: 5.days.ago
-    create_activity user: user, distance: 100, date: 4.days.ago
-
-    expect(user.total_distance_for(challenge.period)).to eq(200)
-  end
-
-  it "can show a sum of distances with one on the last day of the\
-    challenge" do
-    challenge = create_challenge start_date: 5.days.ago,
-      end_date: 10.days.from_now
-    user      = create_user challenge: challenge
-    create_activity user: user, distance: 50, date: 9.days.from_now
-    create_activity user: user, distance: 45, date: 10.days.from_now
-    create_activity user: user, distance: 100, date: 11.days.from_now
-
-    expect(user.total_distance_for(challenge.period)).to eq(95)
-  end
-
-  it "can show an activity that is logged on the first day of a challenge" do
-    challenge = create_challenge start_date: 5.days.ago,
-      end_date: 10.days.from_now
-    user      = create_user challenge: challenge
-    create_activity user: user, distance: 50, date: 5.days.ago
-
-    expect(user.total_distance_for(challenge.period)).to eq(50)
-  end
-
-  it "can show an activity that is logged on the last day of a challenge" do
-    challenge = create_challenge start_date: 5.days.ago,
-      end_date: 10.days.from_now
-    user      = create_user challenge: challenge
-    create_activity user: user, distance: 50, date: 10.days.from_now
-
-    expect(user.total_distance_for(challenge.period)).to eq(50)
-  end
-
-  it "can show actvities within a date range" do
-    challenge = create_challenge start_date: 5.days.ago,
-      end_date: 10.days.from_now
-    user      = create_user challenge: challenge
-    activity1 = create_activity user: user, distance: 100, date: 1.days.ago
-    create_activity user: user, distance: 5, date: 10.day.ago
-
-    expect(user.activities_for(challenge.period)).to eq([activity1])
-  end
-
-  it "can show the % completed of a commitment" do
+    it "can show the % completed of a commitment" do
     user = create_user commitment: 1000
 
     create_activity user: user, distance: 100, date: 2.days.ago
@@ -142,5 +63,29 @@ describe "A user" do
     create_activity user: user2, distance: 400, date: 1.day.ago
 
     expect(user2.highest_kilometers?).to eq(TRUE)
+  end
+
+  context "with a challenge that started 5 days ago and a second user" do
+    let(:challenge) {
+      create_challenge start_date: 5.days.ago, end_date: 10.days.from_now
+    }
+    let(:user2_commitment) { 500 }
+    let(:user2) {create_user challenge: challenge, commitment: user2_commitment}
+
+    before(:each) do
+      @activity1 = create_activity user: user2, distance: 200, date: 1.day.ago
+      @activity2 = create_activity user: user2, distance: 51, date: 5.days.ago
+      @activity3 = create_activity user: user2, distance: 50, date: 10.days.from_now
+      create_activity user: user2, distance: 50, date: 6.days.ago
+      create_activity user: user2, distance: 50, date: 11.days.from_now
+    end
+
+    it "can show a sum of distance with one on the first day of the challenge and one at the last" do
+      expect(user2.total_distance_for(challenge.period)).to eq(301)
+    end
+
+    it "can show actvities within a date range" do
+      expect(user2.activities_for(challenge.period)).to eq([@activity1,@activity2,@activity3])
+    end
   end
 end
