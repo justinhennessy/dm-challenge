@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
   end
 
   def activities_for period
-    activities.list(period)
+    activities.between(period)
   end
 
   def percent_completed
