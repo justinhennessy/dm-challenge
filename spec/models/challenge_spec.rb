@@ -1,105 +1,58 @@
 require 'spec_helper'
 
 describe "A challenge" do
-  it "can show who has the yellow jersey" do
-    challenge = create_challenge start_date: 10.days.ago,
+  let(:commitment) { 1000 }
+  let(:user2_commitment) { 500 }
+  let(:challenge) {
+    create_challenge start_date: 10.days.ago,
       end_date: 21.days.from_now
-    user1     = create_user challenge: challenge, commitment: 1000
-    user2     = create_user challenge: challenge, commitment: 500
-    create_activity user: user1, distance: 100, date: 2.days.ago
-    create_activity user: user1, distance: 5, date: 1.day.ago
-    create_activity user: user1, distance: 1000, date: 30.day.ago
-    create_activity user: user2, distance: 50, date: 2.days.ago
-    create_activity user: user2, distance: 200, date: 1.day.ago
+  }
+  let(:user) {
+    create_user challenge: challenge, commitment: commitment
+  }
+  let(:user2) {create_user challenge: challenge, commitment: user2_commitment}
 
+  before(:each) do
+    create_activity user: user, distance: 100, ascent: 10, date: 2.days.ago
+    create_activity user: user, distance: 5, date: 1.day.ago
+    create_activity user: user, distance: 1000, achievements: 10, date: 30.day.ago
+    create_activity user: user2, distance: 50, ascent: 1000, achievements: 11, date: 2.days.ago
+    create_activity user: user2, distance: 200, ascent: 1000, achievements: 11, date: 1.day.ago
+  end
+
+  it "can show who has the yellow jersey" do
     expect(challenge.user_with_highest_kilometers).to eq(user2)
   end
 
   it "can show who has the spotted jersey" do
-    challenge = create_challenge start_date: 10.days.ago,
-      end_date: 21.days.from_now
-    user1     = create_user challenge: challenge, commitment: 1000
-    user2     = create_user challenge: challenge, commitment: 500
-    create_activity user: user1, distance: 100, date: 2.days.ago
-    create_activity user: user1, distance: 5, date: 1.day.ago
-    create_activity user: user1, distance: 1000, date: 30.day.ago
-    create_activity user: user2, distance: 50, ascent: 1000, date: 2.days.ago
-    create_activity user: user2, distance: 200, ascent: 1000,  date: 1.day.ago
-
     expect(challenge.user_with_highest_ascent).to eq(user2)
   end
 
   it "can show who has the green jersey" do
-    challenge = create_challenge start_date: 10.days.ago,
-      end_date: 21.days.from_now
-    user1     = create_user challenge: challenge, commitment: 1000
-    user2     = create_user challenge: challenge, commitment: 500
-    create_activity user: user1, distance: 100, date: 2.days.ago
-    create_activity user: user1, distance: 5, date: 1.day.ago
-    create_activity user: user1, distance: 1000, achievements: 10,
-      date: 30.day.ago
-    create_activity user: user2, distance: 50, achievements: 11,
-      date: 2.days.ago
-    create_activity user: user2, distance: 200, achievements: 11,
-      date: 1.day.ago
-
     expect(challenge.user_with_highest_achievements).to eq(user2)
   end
 
   it "can show the total commitment/target of its participants" do
-    challenge = create_challenge
-    user1     = create_user challenge: challenge, commitment: 1000
-    user2     = create_user challenge: challenge, commitment: 500
-
     expect(challenge.target).to eq(1500)
   end
 
   it "can show the total number of days in a challenge" do
-    challenge = create_challenge start_date: 10.days.ago,
-      end_date: 21.days.from_now
-
     expect(challenge.total_days).to eq(31)
   end
 
   it "can show the accumulated daily average needed to achieve the target in the challenge time period" do
-    challenge = create_challenge start_date: 10.days.ago,
-      end_date: 21.days.from_now
-    user1     = create_user challenge: challenge, commitment: 1000
-    user2     = create_user challenge: challenge, commitment: 500
-
     expect(challenge.target_needed_to_date).to eq(528)
   end
 
   it "can show the daily average needed for the challenge" do
-    challenge = create_challenge start_date: 10.days.ago,
-      end_date: 21.days.from_now
-    user1     = create_user challenge: challenge, commitment: 1000
-    user2     = create_user challenge: challenge, commitment: 500
-
     expect(challenge.daily_average).to eq(48)
   end
 
   it "can show the deficit between the accumulated daily average and the accumulated actual" do
-    challenge = create_challenge start_date: 10.days.ago,
-      end_date: 21.days.from_now
-    user1     = create_user challenge: challenge, commitment: 1000
-    user2     = create_user challenge: challenge, commitment: 500
-    create_activity user: user1, distance: 100, date: 2.days.ago
-    create_activity user: user1, distance: 5, date: 1.day.ago
-    create_activity user: user2, distance: 50, date: 2.days.ago
-    create_activity user: user2, distance: 200, date: 1.day.ago
-
     expect(challenge.deficit).to eq(173)
   end
 
   it "can show the team total accumulated to date" do
-    challenge = create_challenge start_date: 10.days.ago,
-      end_date: 21.days.from_now
-    user1     = create_user challenge: challenge, commitment: 1000
-    user2     = create_user challenge: challenge, commitment: 500
-    create_activity user: user1, distance: 5, date: 1.days.ago
-    create_activity user: user1, distance: 200, date: 1.day.ago
-
-    expect(challenge.accumulated_total).to eq(205)
+    expect(challenge.accumulated_total).to eq(355)
   end
 end
