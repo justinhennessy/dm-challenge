@@ -26,6 +26,14 @@ describe "A user" do
     expect(user.errors[:name].first).to eq("can't be blank")
   end
 
+  it "can show their daily average" do
+    expect(user.daily_average).to eq(32)
+  end
+
+  it "can show their total needed to date" do
+    expect(user.total_needed_to_date).to eq(352)
+  end
+
   it "can show sum of ascent within a date range" do
     expect(user.total_ascent_for(challenge.period)).to eq(30)
   end

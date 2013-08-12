@@ -5,6 +5,14 @@ class User < ActiveRecord::Base
   #validates :commitment, presence: true, :numericality => { greater_than: 0 }
   validates :name, presence: true
 
+  def daily_average
+    (commitment / challenge.total_days).to_i
+  end
+
+  def total_needed_to_date
+    (challenge.start_date < Time.now.to_date) ? daily_average * (Time.now.to_date - challenge.start_date + 1).to_i : 0
+  end
+
   def total_distance_for period
     activities.total_distance_between period
   end

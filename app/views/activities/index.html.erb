@@ -1,5 +1,5 @@
 <h1><%= @user.preferred_name %>'s activities</h1>
-<small>Commitment <%= @user.commitment %></small><br><br>
+<small>Commitment <%= @user.commitment %> (<%= @user.total_needed_to_date %> needed)</small><br><br>
 <%= link_to( image_tag('add.png'), new_user_activity_path(@user)) %>
 <% if @activities.count == 0 %>
 <br><br>
