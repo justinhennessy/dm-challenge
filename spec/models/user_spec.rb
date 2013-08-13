@@ -26,6 +26,14 @@ describe "A user" do
     expect(user.errors[:name].first).to eq("can't be blank")
   end
 
+  it "can show their daily average" do
+    expect(user.daily_average).to eq(32)
+  end
+
+  it "can show their total needed to date" do
+    expect(user.total_needed_to_date).to eq(352)
+  end
+
   it "can show sum of ascent within a date range" do
     expect(user.total_ascent_for(challenge.period)).to eq(30)
   end
@@ -39,30 +47,13 @@ describe "A user" do
   end
 
     it "can show the % completed of a commitment" do
-    user = create_user commitment: 1000
-
-    create_activity user: user, distance: 100, date: 2.days.ago
-    create_activity user: user, distance: 100, date: 1.day.ago
-
-    expect(user.percent_completed).to eq(20)
+    expect(user.percent_completed).to eq(10)
   end
 
   it "can show a users nickname if present instead of name" do
     user = create_user nickname: "Raezor"
 
     expect(user.preferred_name).to eq("Raezor")
-  end
-
-  it "can show if a user has the yellow jersey" do
-    user1 = create_user
-    user2 = create_user
-
-    create_activity user: user1, distance: 100, date: 2.days.ago
-    create_activity user: user1, distance: 300, date: 1.day.ago
-    create_activity user: user2, distance: 100, date: 1.day.ago
-    create_activity user: user2, distance: 400, date: 1.day.ago
-
-    expect(user2.highest_kilometers?).to eq(TRUE)
   end
 
   context "with a challenge that started 5 days ago and a second user" do
@@ -87,5 +78,9 @@ describe "A user" do
     it "can show actvities within a date range" do
       expect(user2.activities_for(challenge.period)).to eq([@activity1,@activity2,@activity3])
     end
+
+    it "can show if a user has the yellow jersey" do
+    expect(user2.highest_kilometers?).to eq(TRUE)
+  end
   end
 end

@@ -1,6 +1,10 @@
 <h1><%= @user.preferred_name %>'s activities</h1>
-<small>Commitment <%= @user.commitment %></small><br><br>
-<%= link_to( image_tag('add.png'), new_user_activity_path(@user)) %>
+<small>
+  Commitment <%= @user.commitment %><br>
+  Current total <%= @user.total_distance_for @challenge.period %><br>
+  Needed <%= @user.total_needed_to_date %><br>
+</small><br>
+<%= link_to( image_tag('add.png'), new_user_activity_path(@user)) %><br><br>
 <% if @activities.count == 0 %>
 <br><br>
 There are currently no activities!
