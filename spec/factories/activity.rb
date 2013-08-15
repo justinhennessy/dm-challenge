@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :activity do
-    date  { Time.now }
+    date  { Time.current }
     distance 50
     user
   end

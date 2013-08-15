@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   end
 
   def total_needed_to_date
-    (challenge.start_date < Time.now.to_date) ? daily_average * (Time.now.to_date - challenge.start_date + 1).to_i : 0
+    (challenge.start_date < Time.current.to_date) ? daily_average * (Time.current.to_date - challenge.start_date + 1).to_i : 0
   end
 
   def total_distance_for period
