@@ -10,7 +10,7 @@ class Challenge < ActiveRecord::Base
   end
 
   def total_days
-    (end_date - start_date + 1).to_i
+    (end_date - start_date).to_i
   end
 
   def target_needed_to_date
@@ -18,7 +18,7 @@ class Challenge < ActiveRecord::Base
   end
 
   def accumulated_total
-    users.inject(0) {|result, user| result + user.total_distance_for(period)}
+    users.inject(0) { |result, user| result + user.total_distance_for(period) }
   end
 
   def deficit
