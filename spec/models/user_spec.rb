@@ -31,7 +31,7 @@ describe "A user" do
   end
 
   it "can show their total needed to date" do
-    expect(user.total_needed_to_date).to eq(352)
+    expect(user.total_kilometers_needed_to_date).to eq(352)
   end
 
   it "can show sum of ascent within a date range" do
