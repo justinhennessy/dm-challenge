@@ -36,9 +36,21 @@ describe "Viewing a users activity list" do
     expect(current_path).to eq(new_user_activity_path(user))
   end
 
-  it "shows how they are tracking against their daily average to date" do
+  it "shows how they are tracking against their total needed to date" do
     visit user_activities_path(user)
 
     expect(page).to have_text("352")
+  end
+
+  it "shows their commitment" do
+    visit user_activities_path(user)
+
+    expect(page).to have_text("1000")
+  end
+
+  it "shows their current total" do
+    visit user_activities_path(user)
+
+    expect(page).to have_text("207")
   end
 end
