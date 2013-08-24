@@ -4,8 +4,7 @@ describe "A challenge" do
   let(:commitment) { 1000 }
   let(:user2_commitment) { 500 }
   let(:challenge) {
-    create_challenge start_date: 10.days.ago,
-      end_date: 21.days.from_now
+    create_challenge start_date: 10.days.ago, end_date: 20.days.from_now
   }
   let(:user) {
     create_user challenge: challenge, commitment: commitment
@@ -18,6 +17,10 @@ describe "A challenge" do
     create_activity user: user, distance: 1000, achievements: 10, date: 30.day.ago
     create_activity user: user2, distance: 50, ascent: 1000, achievements: 11, date: 2.days.ago
     create_activity user: user2, distance: 200, ascent: 1000, achievements: 11, date: 1.day.ago
+  end
+
+  it "can show the number of days completed in a challenge" do
+    expect(challenge.current_day_count).to eq(11)
   end
 
   it "can show who has the yellow jersey" do
