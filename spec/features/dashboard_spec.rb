@@ -4,7 +4,7 @@ describe "Viewing the dashboard" do
   let(:commitment) { 1000 }
   let(:challenge) {
     create_challenge start_date: 10.days.ago,
-      end_date: 21.days.from_now
+      end_date: 20.days.from_now
   }
   let(:user) {
     create_user challenge: challenge, commitment: commitment
@@ -73,7 +73,7 @@ describe "Viewing the dashboard" do
     it "shows the number of days left in a challenge once it has started" do
       visit dashboard_path
 
-      expect(page).to have_text("21 days left!")
+      expect(page).to have_text("20 days left!")
     end
 
     it "shows the teams target for the current challenge" do
