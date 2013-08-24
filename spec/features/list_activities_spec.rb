@@ -3,7 +3,7 @@ require 'spec_helper'
 describe "Viewing a users activity list" do
   let(:commitment) { 1000 }
   let(:challenge) {
-    create_challenge start_date: 10.days.ago, end_date: 21.days.from_now
+    create_challenge start_date: 10.days.ago, end_date: 20.days.from_now
   }
   let(:user) {
     create_user challenge: challenge, commitment: commitment
