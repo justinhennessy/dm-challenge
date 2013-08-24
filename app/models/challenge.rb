@@ -10,11 +10,19 @@ class Challenge < ActiveRecord::Base
   end
 
   def total_days
-    (end_date - start_date).to_i
+    (end_date - start_date + 1).to_i
   end
 
   def target_needed_to_date
-    (start_date < Time.current.to_date) ? daily_average * (Time.current.to_date - start_date + 1).to_i : 0
+    (start_date < Time.current.to_date) ? daily_average * current_day_count : 0
+  end
+
+  def current_day_count
+    (Time.current.to_date - start_date + 1).to_i
+  end
+
+  def days_left
+    (end_date - Time.current.to_date).to_i
   end
 
   def accumulated_total
