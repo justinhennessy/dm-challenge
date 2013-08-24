@@ -9,6 +9,10 @@ class User < ActiveRecord::Base
     (commitment / challenge.total_days).to_i
   end
 
+  def daily_average_needed_to_complete_challenge
+    ((commitment - total_distance_for(challenge.period)) / (challenge.days_left + 1)).to_i
+  end
+
   def total_kilometers_needed_to_date
     (challenge.start_date < Time.current.to_date) ? daily_average * (Time.current.to_date - challenge.start_date + 1).to_i : 0
   end

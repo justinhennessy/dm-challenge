@@ -53,4 +53,10 @@ describe "Viewing a users activity list" do
 
     expect(page).to have_text("207")
   end
+  
+  it "shows their current daily average needed to complete the challenge" do
+    visit user_activities_path(user)
+
+    expect(page).to have_text("37")
+  end
 end

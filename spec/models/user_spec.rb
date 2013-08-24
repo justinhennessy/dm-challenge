@@ -29,6 +29,10 @@ describe "A user" do
     expect(user.daily_average).to eq(32)
   end
 
+    it "can show their daily average" do
+    expect(user.daily_average_needed_to_complete_challenge).to eq(42)
+  end
+
   it "can show their total needed to date" do
     expect(user.total_kilometers_needed_to_date).to eq(352)
   end

@@ -22,6 +22,10 @@ describe "A challenge" do
   it "can show the number of days completed in a challenge" do
     expect(challenge.current_day_count).to eq(11)
   end
+  
+  it "can show the numbers of days left in a challenge" do
+    expect(challenge.days_left).to eq(20)
+  end
 
   it "can show who has the yellow jersey" do
     expect(challenge.user_with_highest_kilometers).to eq(user2)
