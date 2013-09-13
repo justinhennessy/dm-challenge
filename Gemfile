@@ -8,14 +8,16 @@ group :test, :development do
   gem 'factory_girl_rails'
   gem 'ffaker'
   gem 'localtunnel'
-  gem "sqlite3", :platform => [:ruby, :mswin, :mingw]
-  gem "rspec-rails"
-  gem "capybara"
-  gem "rake"
-  gem "travis-lint"
+  gem 'sqlite3', :platform => [:ruby, :mswin, :mingw]
+  gem 'rspec-rails'
+  gem 'capybara'
+  gem 'rake'
+  gem 'travis-lint'
   gem 'cane_extensions', github: 'everydayhero/cane_extensions'
   gem 'database_cleaner'
   gem 'dotenv-rails'
+  gem 'thor'
+  gem 'rack-mini-profiler'
 
   gem 'simplecov', :require => false
 
