@@ -11,11 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130804110502) do
+ActiveRecord::Schema.define(version: 20130913092208) do
 
   create_table "activities", force: true do |t|
     t.date     "date"
-    t.integer  "value"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"

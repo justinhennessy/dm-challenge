@@ -123,6 +123,8 @@ GEM
     pg (0.15.1)
     polyglot (0.3.3)
     rack (1.5.2)
+    rack-mini-profiler (0.1.31)
+      rack (>= 1.1.3)
     rack-test (0.6.2)
       rack (>= 1.0)
     rails (4.0.0.rc1)
@@ -222,6 +224,7 @@ DEPENDENCIES
   newrelic_rpm
   omniauth-facebook
   pg
+  rack-mini-profiler
   rails (= 4.0.0.rc1)
   rake
   rspec-rails
@@ -230,6 +233,7 @@ DEPENDENCIES
   simplecov
   sqlite3
   thin
+  thor
   travis-lint
   turbolinks
   twitter-bootstrap-rails

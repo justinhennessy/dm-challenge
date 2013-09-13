@@ -16,14 +16,17 @@ group :test, :development do
   gem 'cane_extensions', github: 'everydayhero/cane_extensions'
   gem 'database_cleaner'
   gem 'dotenv-rails'
-  gem 'thor'
-  gem 'rack-mini-profiler'
 
   gem 'simplecov', :require => false
 
   if RUBY_VERSION >= '1.9'
     gem 'coveralls', :require => false
   end
+end
+
+group :development do
+  gem 'thor'
+  gem 'rack-mini-profiler'
 end
 
 group :production do
