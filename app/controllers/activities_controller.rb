@@ -2,7 +2,7 @@ class ActivitiesController < ApplicationController
   before_filter :authorize
 
   def index
-    @challenge  = Challenge.first
+    @challenge  = Challenge.last
     @user       = User.find(params[:user_id])
     @activities = @user.activities_for(@challenge.period)
   end
