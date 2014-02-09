@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   end
 
   def daily_average_needed_to_complete_challenge
-    ((commitment - total_distance_for(challenge.period)) / (challenge.days_left + 1)).to_i
+    ((commitment - total_distance_for(challenge.period)) / (challenge.days_left + 1))
   end
 
   def total_kilometers_needed_to_date
