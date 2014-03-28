@@ -3,7 +3,7 @@
 ![](https://coveralls.io/repos/justinhennessy/dm-challenge/badge.png?branch=master)
 ![](https://codeclimate.com/github/justinhennessy/dm-challenge.png)
 
-[![Build Status](https://semaphoreapp.com/api/v1/projects/85cf7fbc-e3a3-449a-95b9-bd6ad09cc8cb/159915/shields_badge.png)]
+[![Build Status](https://semaphoreapp.com/api/v1/projects/85cf7fbc-e3a3-449a-95b9-bd6ad09cc8cb/159915/shields_badge.png)
 
 DMChallenge is for passionate cyclists that are after a tool to help their team
 to achieve a common goal that each member commits to.
